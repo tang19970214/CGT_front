@@ -8,9 +8,9 @@ export default ({ app, store }) => {
     let obj = {}
     obj[nowLocale] = typeof store.state.langList === 'string' ? JSON.parse(store.state.langList) : store.state.langList;
     // 避免初次進入獲取不到值
+    console.log(obj, obj[nowLocale, store.state.langList]);
     if (obj[nowLocale] === undefined) {
-        // obj[nowLocale] = require('~/locales/zh-tw.json')
-        window.location.reload()
+        obj[nowLocale] = require('~/locales/zh-tw.json')
     }
 
     app.i18n = new VueI18n({
