@@ -11,7 +11,6 @@ export default ({ app, store }) => {
     if (obj[nowLocale] === undefined) {
         obj[nowLocale] = require('~/locales/zh-tw.json')
     }
-    console.log('i18n', obj);
 
     app.i18n = new VueI18n({
         locale: app.$cookies.get('lang') || store.state.locale,
