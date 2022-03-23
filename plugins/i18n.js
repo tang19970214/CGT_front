@@ -7,6 +7,7 @@ export default ({ app, store }) => {
     const nowLocale = app.$cookies.get('lang') || store.state.locale
     let obj = {}
     obj[nowLocale] = typeof store.state.langList === 'string' ? JSON.parse(store.state.langList) : store.state.langList;
+    console.log('i18n', obj);
 
     app.i18n = new VueI18n({
         locale: app.$cookies.get('lang') || store.state.locale,
