@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full h-28 bg-[url('https://hinetcdn.waca.ec/commons/images/pattern/footer_pattern/img_wall.png?v=202203101120')] bg-repeat">
+  <section class="w-full h-28 bg-[url('~/static/images/bgImg_footer.png')] bg-repeat">
     <div class="w-full h-full max-w-[1280px] mx-auto">
       <div class="w-full h-full flex items-center justify-center">
         <div class="flex flex-col lg:flex-row items-center lg:gap-5">

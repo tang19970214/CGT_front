@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <section class="w-full min-h-screen font-sans bg-[url('https://hinetcdn.waca.ec/uploads/shops/24280/skins/33/33ff9ecd8ffc242905b0a82fe14fdaed.jpg')] bg-no-repeat bg-top bg-fixed bg-cover">
+    <section class="w-full min-h-screen font-sans bg-[url('~/static/images/bgImg.jpeg')] bg-no-repeat bg-top bg-fixed bg-cover">
       <!-- <Loading /> -->
       <Header :openHeaderBg="openHeaderBg" />
       <Nuxt class="w-full max-w-[1280px] mx-auto pb-4 pt-10 box-border min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-112px)]" />
