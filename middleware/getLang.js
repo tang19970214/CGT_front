@@ -10,7 +10,13 @@ export default async({ app, $api, store }) => {
 
     store.dispatch('GetLoales', data);
 
-    const getLangList = data.filter((i) => i.langCode === app.$cookies.get("lang"));
-    store.dispatch('GetLangList', getLangList[0]?.contents)
-    console.log('getLangList', getLangList, app.$cookies.get('lang'));
+    const getLangCodeArr = data.map((i) => i.langCode);
+    let langMsg = {}
+    getLangCodeArr.forEach((key) => {
+      const i18nContent = data.filter((i) => i.langCode === key)[0].contents
+      langMsg[key] = typeof i18nContent === 'string' ? JSON.parse(i18nContent) : {}
+    })
+
+    console.log(langMsg);
+    store.dispatch('GetLangList', langMsg)
 }
