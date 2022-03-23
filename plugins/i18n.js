@@ -8,15 +8,15 @@ export default ({ app, store }) => {
     let obj = {}
     obj[nowLocale] = typeof store.state.langList === 'string' ? JSON.parse(store.state.langList) : store.state.langList;
     // 避免初次進入獲取不到值
-    console.log(obj, obj[nowLocale, store.state.langList]);
-    if (obj[nowLocale] === undefined) {
-        obj[nowLocale] = require('~/locales/zh-tw.json')
-    }
+    console.log(obj, obj[nowLocale], store.state.langList);
+    // if (obj[nowLocale] === undefined) {
+    //     obj[nowLocale] = require('~/locales/zh-tw.json')
+    // }
 
     app.i18n = new VueI18n({
         locale: app.$cookies.get('lang') || store.state.locale,
         fallbackLocale: 'zh-tw',
-        messages: obj,
+        messages: Object.keys(obj).length > 0 ? obj : { 'zh-tw': require('~/locales/zh-tw.json') },
         // 消除 i18 警告
         silentTranslationWarn: true,
     })
