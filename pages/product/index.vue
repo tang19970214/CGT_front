@@ -55,6 +55,7 @@ export default {
         const { code, data } = res.data;
         if (code === 200) {
           this.list = data.map((i) => {
+            i.files = JSON.parse(i.files);
             i.openHover = false;
             return i;
           });
