@@ -12,4 +12,5 @@ export default async({ app, $api, store }) => {
 
     const getLangList = data.filter((i) => i.langCode === app.$cookies.get("lang"));
     store.dispatch('GetLangList', getLangList[0]?.contents)
+    console.log('getLangList', getLangList, app.$cookies.get('lang'));
 }
