@@ -4,10 +4,6 @@ import { configure,localize } from 'vee-validate'
 
 Vue.use(VueI18n);
 export default ({ app, store }) => {
-    const nowLocale = app.$cookies.get('lang') || store.state.locale
-
-    console.log(store.state.langList);
-
     app.i18n = new VueI18n({
         locale: app.$cookies.get('lang') || store.state.locale,
         fallbackLocale: 'zh-tw',

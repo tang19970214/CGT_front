@@ -1,4 +1,4 @@
-export default async({ app, $api, store }) => {
+export default async({ $api, store }) => {
     const listQuery = {
         page: 1,
         limit: 999,
@@ -17,6 +17,5 @@ export default async({ app, $api, store }) => {
       langMsg[key] = typeof i18nContent === 'string' ? JSON.parse(i18nContent) : {}
     })
 
-    console.log(langMsg);
     store.dispatch('GetLangList', langMsg)
 }
