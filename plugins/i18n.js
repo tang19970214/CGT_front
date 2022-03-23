@@ -7,6 +7,10 @@ export default ({ app, store }) => {
     const nowLocale = app.$cookies.get('lang') || store.state.locale
     let obj = {}
     obj[nowLocale] = typeof store.state.langList === 'string' ? JSON.parse(store.state.langList) : store.state.langList;
+    // 避免初次進入獲取不到值
+    if (obj[nowLocale] === undefined) {
+        obj[nowLocale] = require('~/locales/zh-tw.json')
+    }
     console.log('i18n', obj);
 
     app.i18n = new VueI18n({
