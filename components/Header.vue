@@ -1,0 +1,130 @@
+<template>
+  <section class="sticky top-0 left-0 w-full h-16 md:h-20 lg:h-28 transition duration-300 z-20" :class="{ 'bg-white bg-opacity-80 shadow-[0px_4px_4px_rgba(140,140,140,0.25)]': openHeaderBg }">
+    <div class="w-full max-w-[1280px] h-full mx-auto px-3 md:px-5 box-border flex items-center justify-between">
+      <img class="w-28 md:w-36 lg:w-auto" :class="{ 'cursor-pointer': !checkRoute('/') }" src="~/static/images/logo.png" alt="鉅鴻科技" @click="goPath('/')" />
+
+      <!-- menu -->
+      <div @click="openPhoneMenu = !openPhoneMenu" class="md:hidden flex flex-col duration-300 gap-1 z-40">
+        <div class="h-[3px] w-6 bg-black duration-300" :class="{ 'translate-y-1.5 translate-x-0 rotate-45': openPhoneMenu }"></div>
+        <div class="h-[3px] w-6 bg-black duration-300" :class="{ 'opacity-0': openPhoneMenu }"></div>
+        <div class="h-[3px] w-6 bg-black duration-300" :class="{ '-translate-y-2 -translate-x-0 -rotate-45': openPhoneMenu }"></div>
+      </div>
+
+      <div class="hidden md:block ml-auto">
+        <ul class="flex items-center gap-4">
+          <li class="text-lg lg:text-xl text-primary border-b-2 transition duration-300 hover:border-primary" :class="{ 'font-bold border-primary': checkRoute(item.value), 'cursor-pointer border-transparent': !checkRoute(item.value) }" v-for="item in menuList" :key="item.id" @click="goPath(item.value)">{{ item.label }}</li>
+          <li class="text-xl lg:text-2xl text-primary">
+            <div class="flex justify-center dropdown relative">
+              <fa class="cursor-pointer transition duration-300 hover:scale-110" :icon="['fas', 'language']" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" />
+              <ul class="dropdown-menu min-w-max absolute bg-white text-base z-50 float-left py-1 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none" aria-labelledby="dropdownMenuButton1">
+                <li class="py-1 px-4 transition duration-300 hover:bg-primary hover:bg-opacity-10" :class="{ 'text-primary font-bold bg-primary bg-opacity-10': checkLocale(item.langCode), 'cursor-pointer': !checkLocale(item.langCode) }" v-for="(item, idx) in locales" :key="idx" @click="changeLang(item.langCode)">
+                  <a class="dropdown-item text-sm whitespace-nowrap">{{ item.langName }}</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- phone menu -->
+    <transition name="fade">
+      <div v-if="openPhoneMenu" class="fixed z-[20] top-0 left-0 bg-white bg-opacity-90 w-screen h-screen">
+        <div class="w-full h-full flex items-center justify-center">
+          <ul class="text-xl tracking-wider text-gray-700 flex flex-col gap-2">
+            <li :class="{ 'text-primary font-bold': checkRoute('/') }" @click="goPath('/')">首頁</li>
+            <li v-for="item in menuList" :key="item.id" @click="goPath(item.value)">
+              <span :class="{ 'text-primary font-bold': checkRoute(item.value) }">{{ item.label }}</span>
+              <ul class="ml-4 text-base flex flex-col gap-1" v-if="item.value === '/product'">
+                <li :class="{ 'text-primary font-bold': checkProduct(item.dtValue) }" v-for="item in productCategory" :key="item.id" @click="goProductPath(item.dtValue)">{{ item.name }}</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </transition>
+  </section>
+</template>
+
+<script>
+import Cookies from "js-cookie";
+import { mapState, mapMutations } from "vuex";
+
+export default {
+  name: "Header",
+  props: {
+    openHeaderBg: {
+      type: Boolean,
+      required: true,
+      default: () => false,
+    },
+  },
+  data() {
+    return {
+      menuList: [
+        { id: 1, label: this.$t("menu.about"), value: "/about" }, // 關於
+        { id: 2, label: this.$t("menu.news"), value: "/news" }, // 最新消息
+        { id: 3, label: this.$t("menu.product"), value: "/product" }, // 商品介紹
+        { id: 4, label: this.$t("menu.skill"), value: "/skill" }, // 技術應用
+        { id: 5, label: this.$t("menu.contact"), value: "/contact" }, // 聯絡我們
+      ],
+
+      openPhoneMenu: false,
+    };
+  },
+  watch: {
+    openPhoneMenu(bol) {
+      if (bol) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "";
+      }
+    },
+  },
+  computed: {
+    ...mapState(["locales", "productCategory"]),
+    checkRoute() {
+      return (path) => {
+        return this.$route.path === path || this.$route.matched[0]?.path === path;
+      };
+    },
+    checkProduct() {
+      return (val) => {
+        return (this.$route.query?.id || "") === val;
+      };
+    },
+    checkLocale() {
+      return (val) => {
+        const getLang = Cookies.get("lang") || "zh-tw";
+        return getLang === val;
+      };
+    },
+  },
+  methods: {
+    ...mapMutations(["SET_LANG"]),
+    changeLang(val) {
+      if (this.checkLocale(val)) return;
+      this.SET_LANG(val);
+      this.$i18n.locale = val;
+      this.$forceUpdate();
+      window.location.reload();
+    },
+    goPath(path) {
+      if (this.$route.path === path && path === "/product") return;
+      this.$router.push(path);
+      this.openPhoneMenu = false;
+    },
+    goProductPath(val) {
+      if (val === "") {
+        this.$router.push({ name: "product" });
+      } else {
+        this.$router.push({
+          name: "product",
+          query: { id: val },
+        });
+      }
+      this.openPhoneMenu = false;
+    },
+  },
+};
+</script>
