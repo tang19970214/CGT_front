@@ -33,10 +33,11 @@ export default {
     };
 
     const res = await $api.news.load(listQuery);
-    const { code, data, count } = res.data;
+    const { code, data } = res.data;
     if (code !== 200) return;
+    console.log("news", listQuery, data);
 
-    return { imgUrl, listQuery, list: data, total: count };
+    return { imgUrl, listQuery, list: data };
   },
   methods: {
     goNewsInfo(item) {

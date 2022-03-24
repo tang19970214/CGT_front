@@ -106,7 +106,6 @@ export default {
       if (this.checkLocale(val)) return;
       this.SET_LANG(val);
       this.$i18n.locale = val;
-      this.$forceUpdate();
       window.location.reload();
     },
     goPath(path) {
