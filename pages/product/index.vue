@@ -39,7 +39,6 @@ export default {
       i.openHover = false;
       return i;
     });
-    console.log(list);
     if (code !== 200) return;
 
     return { imgUrl, listQuery, list, total: count };
