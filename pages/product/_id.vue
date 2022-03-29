@@ -56,20 +56,42 @@
     <Modal :openModal="openModal" :title="`${$t('product.ask')}...`" width="w-11/12 md:w-3/5 lg:w-2/5" @closeModal="openModal = false">
       <ValidationObserver ref="form" class="w-full flex flex-col gap-3">
         <div class="w-full text-[#606266] flex flex-col gap-2">
-          <!-- 詢問此商品 -->
+          <!-- 詢問商品 -->
           <div class="w-full flex items-center gap-2">
             <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700">{{ $t("product.askProduct") }}</label>
             <div class="w-full form-group relative">
               <span class="text-lg font-bold">{{ temp.productName }}</span>
             </div>
           </div>
-          <!-- 姓名 -->
+          <!-- 公司名稱 -->
+          <div class="w-full flex items-center gap-2">
+            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700" for="companyName">{{ $t("field.companyName") }}</label>
+            <div class="w-full form-group relative">
+              <ValidationProvider :name="$t('field.companyName')" rules="required" v-slot="{ errors }" class="w-full">
+                <div class="w-full relative">
+                  <input id="companyName" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" :placeholder="$t('placeholder.companyName')" v-model="temp.companyName" />
+                </div>
+              </ValidationProvider>
+            </div>
+          </div>
+          <!-- 聯絡人 -->
           <div class="w-full flex items-center gap-2">
             <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700" for="name">{{ $t("field.name") }}</label>
             <div class="w-full form-group relative">
               <ValidationProvider :name="$t('field.name')" rules="required" v-slot="{ errors }" class="w-full">
                 <div class="w-full relative">
                   <input id="name" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" :placeholder="$t('placeholder.name')" v-model="temp.name" />
+                </div>
+              </ValidationProvider>
+            </div>
+          </div>
+          <!-- 職稱 -->
+          <div class="w-full flex items-center gap-2">
+            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700" for="jobTitle">{{ $t("field.jobTitle") }}</label>
+            <div class="w-full form-group relative">
+              <ValidationProvider :name="$t('field.jobTitle')" rules="required" v-slot="{ errors }" class="w-full">
+                <div class="w-full relative">
+                  <input id="jobTitle" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" :placeholder="$t('placeholder.jobTitle')" v-model="temp.jobTitle" />
                 </div>
               </ValidationProvider>
             </div>
@@ -96,13 +118,24 @@
               </ValidationProvider>
             </div>
           </div>
+          <!-- 聯絡地址 -->
+          <div class="w-full flex items-center gap-2">
+            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700" for="address">{{ $t("field.address") }}</label>
+            <div class="w-full form-group relative">
+              <ValidationProvider :name="$t('field.address')" rules="required" v-slot="{ errors }" class="w-full">
+                <div class="w-full relative">
+                  <input id="address" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" :placeholder="$t('placeholder.address')" v-model="temp.address" />
+                </div>
+              </ValidationProvider>
+            </div>
+          </div>
           <!-- 詢問內容 -->
           <div class="w-full flex items-center gap-2">
             <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700" for="contents">{{ $t("field.content") }}</label>
             <div class="w-full form-group relative">
               <ValidationProvider :name="$t('field.content')" rules="required" v-slot="{ errors }" class="w-full">
                 <div class="w-full relative">
-                  <textarea id="contents" v-model="temp.contents" rows="6" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" :placeholder="$t('placeholder.content')" />
+                  <textarea id="contents" v-model="temp.contents" rows="7" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" :placeholder="$t('placeholder.content')" />
                 </div>
               </ValidationProvider>
             </div>
@@ -122,10 +155,13 @@
 
 <script>
 const formTemplate = {
+  companyName: "",
   productName: "",
   email: "",
   name: "",
+  jobTitle: "",
   phone: "",
+  address: "",
   contents: "",
 };
 

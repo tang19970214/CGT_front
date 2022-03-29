@@ -3,11 +3,11 @@
     <section class="w-full min-h-screen font-sans bg-[url('~/static/images/bgImg.jpeg')] bg-no-repeat bg-top bg-fixed bg-cover">
       <!-- <Loading /> -->
       <Header :openHeaderBg="openHeaderBg" />
-      <Nuxt class="w-full max-w-[1280px] mx-auto pb-4 pt-10 box-border min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-112px)]" />
+      <Nuxt class="w-full max-w-[1280px] mx-auto pb-4 pt-10 box-border min-h-[calc(100vh-112px-64px)] md:min-h-[calc(100vh-112px-80px)] lg:min-h-[calc(100vh-112px-112px)]" />
       <Footer />
 
       <!-- goTop -->
-      <div v-if="showGoTop" class="animate-bounce fixed right-4 bottom-4 w-10 h-10 md:w-12 md:h-12 rounded flex items-center justify-center z-40 cursor-pointer md:text-2xl bg-white border border-[#e6e6e6]" @click="goTop()">
+      <div v-if="showGoTop" class="animate-bounce fixed right-4 bottom-28 w-10 h-10 md:w-12 md:h-12 rounded flex items-center justify-center z-40 cursor-pointer md:text-2xl bg-white border border-[#e6e6e6]" @click="goTop()">
         <fa class="text-[#808080]" :icon="['fas', 'arrow-up']" />
       </div>
     </section>
@@ -27,7 +27,7 @@ export default {
   },
   watch: {
     scrollTop(val) {
-      if (+val > 100) {
+      if (+val > 50) {
         this.openHeaderBg = true;
       } else {
         this.openHeaderBg = false;

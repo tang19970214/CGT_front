@@ -1,13 +1,11 @@
 <template>
   <section class="sticky top-0 left-0 w-full h-16 md:h-20 lg:h-28 transition duration-300 z-20" :class="{ 'bg-white bg-opacity-80 shadow-[0px_4px_4px_rgba(140,140,140,0.25)]': openHeaderBg }">
     <div class="w-full max-w-[1280px] h-full mx-auto px-3 md:px-5 box-border flex items-center justify-between">
-      <img class="w-28 md:w-36 lg:w-auto" :class="{ 'cursor-pointer': !checkRoute('/') }" src="~/static/images/logo.png" alt="鉅鴻科技" @click="goPath('/')" />
+      <img class="w-44 md:w-36 lg:w-auto" :class="{ 'cursor-pointer': !checkRoute('/') }" src="~/static/images/CGT_logo.png" alt="鉅鴻科技" @click="goPath('/')" />
 
       <!-- menu -->
-      <div @click="openPhoneMenu = !openPhoneMenu" class="md:hidden flex flex-col duration-300 gap-1 z-40">
-        <div class="h-[3px] w-6 bg-black duration-300" :class="{ 'translate-y-1.5 translate-x-0 rotate-45': openPhoneMenu }"></div>
-        <div class="h-[3px] w-6 bg-black duration-300" :class="{ 'opacity-0': openPhoneMenu }"></div>
-        <div class="h-[3px] w-6 bg-black duration-300" :class="{ '-translate-y-2 -translate-x-0 -rotate-45': openPhoneMenu }"></div>
+      <div @click="openPhoneMenu = !openPhoneMenu" class="md:hidden transition duration-200 z-40">
+        <fa class="text-3xl" :icon="['fax', `${openPhoneMenu ? 'times' : 'bars'}`]" />
       </div>
 
       <div class="hidden md:block ml-auto">
@@ -29,7 +27,7 @@
 
     <!-- phone menu -->
     <transition name="fade">
-      <div v-if="openPhoneMenu" class="fixed z-[20] top-0 left-0 bg-white bg-opacity-90 w-screen h-screen">
+      <div v-if="openPhoneMenu" class="fixed z-[20] top-0 left-0 bg-white bg-opacity-95 w-screen h-screen">
         <div class="w-full h-full flex items-center justify-center">
           <ul class="text-xl tracking-wider text-gray-700 flex flex-col gap-2">
             <li :class="{ 'text-primary font-bold': checkRoute('/') }" @click="goPath('/')">首頁</li>
@@ -63,9 +61,9 @@ export default {
     return {
       menuList: [
         { id: 1, label: this.$t("menu.about"), value: "/about" }, // 關於
-        { id: 2, label: this.$t("menu.news"), value: "/news" }, // 最新消息
-        { id: 3, label: this.$t("menu.product"), value: "/product" }, // 商品介紹
-        { id: 4, label: this.$t("menu.skill"), value: "/skill" }, // 技術應用
+        { id: 2, label: this.$t("menu.product"), value: "/product" }, // 商品介紹
+        { id: 3, label: this.$t("menu.skill"), value: "/skill" }, // 技術應用
+        { id: 4, label: this.$t("menu.news"), value: "/news" }, // 最新消息
         { id: 5, label: this.$t("menu.contact"), value: "/contact" }, // 聯絡我們
       ],
 

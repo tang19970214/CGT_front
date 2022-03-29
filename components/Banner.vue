@@ -1,8 +1,8 @@
 <template>
   <section>
-    <VueSlickCarousel :arrows="true">
+    <VueSlickCarousel :arrows="true" autoplay>
       <div v-for="item in carouselArr" :key="item.id" class="w-full relative">
-        <a :href="item.links" class="pointer-events-none" target="_blank">
+        <a :href="!!item.links ? item.links : false" target="_blank">
           <img class="w-full pointer-events-none h-full object-cover" :src="`${imgUrl}/${item.files}`" :alt="item.title" />
         </a>
       </div>

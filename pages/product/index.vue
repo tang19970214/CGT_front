@@ -28,7 +28,7 @@ export default {
       CategoryId: query?.id,
       LangCode: app.$cookies.get("lang") || "zh-tw",
       page: 1,
-      limit: 10,
+      limit: 999,
       key: "",
     };
 
@@ -39,6 +39,7 @@ export default {
       i.openHover = false;
       return i;
     });
+    console.log(list);
     if (code !== 200) return;
 
     return { imgUrl, listQuery, list, total: count };

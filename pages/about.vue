@@ -6,35 +6,12 @@
       </div>
 
       <!-- 鉅鴻科技 -->
-      <div class="w-full flex flex-col lg:flex-row items-center md:items-start lg:items-center justify-between py-2 box-border mb-8">
-        <!-- desc -->
-        <div class="w-auto flex flex-col md:flex-row items-center gap-2 px-4 md:px-0">
-          <img class="w-20 h-20" src="~/static/images/logo_footer.png" alt="" />
+      <div class="w-auto flex flex-col md:flex-row items-center gap-2 px-4 md:px-0 mt-2 mb-8">
+        <img class="w-28" src="~/static/images/logo_footer.png" alt="" />
 
-          <div class="flex flex-col items-center md:items-start text-center gap-1">
-            <h1 class="text-xl">鉅鴻科技 CGT TECHNOLOGY</h1>
-            <p class="text-sm text-[#808080]">{{ $t("about.desc") }}</p>
-          </div>
-        </div>
-
-        <!-- contact -->
-        <div class="w-auto md:ml-20 lg:ml-auto flex flex-col gap-2 mt-4 lg:mt-0">
-          <!-- 客服專線 -->
-          <div class="w-auto flex gap-1.5">
-            <fa class="text-[#808080] w-5 translate-y-1" :icon="['fas', 'phone-alt']" />
-            <div class="w-auto flex flex-col gap-1.5 text-sm">
-              <p>{{ $t("field.tel") }}</p>
-              <p class="text-[#808080]">(02)2225-8288</p>
-            </div>
-          </div>
-          <!-- 地址 -->
-          <div class="w-auto flex gap-1.5">
-            <fa class="text-[#808080] w-5 translate-y-1" :icon="['fas', 'map-marker-alt']" />
-            <div class="w-auto flex flex-col gap-1.5 text-sm">
-              <p>{{ $t("field.address") }}</p>
-              <p class="text-[#808080]">{{ $t("about.address") }}</p>
-            </div>
-          </div>
+        <div class="flex flex-col items-center md:items-start text-center gap-1">
+          <h1 class="text-xl">鉅鴻科技 CGT TECHNOLOGY</h1>
+          <p class="text-sm text-[#808080]">{{ $t("about.desc") }}</p>
         </div>
       </div>
 
