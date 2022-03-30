@@ -5,39 +5,51 @@
         <strong class="text-lg tracking-widest">{{ $t("contact.pageTitle") }}</strong>
       </div>
 
-      <div class="w-full flex flex-col lg:flex-row items-center md:items-start justify-between py-2 box-border mb-8">
+      <div class="w-full flex flex-col lg:flex-row gap-2 items-center md:items-start justify-between py-2 box-border">
         <!-- contact -->
-        <div class="w-auto flex flex-col gap-2 mb-5 lg:mb-0">
-          <!-- 電話 -->
-          <div class="w-auto flex gap-1.5">
-            <fa class="text-[#808080] w-5 translate-y-1" :icon="['fas', 'phone-alt']" />
-            <div class="w-auto flex flex-col gap-1.5">
-              <p>{{ $t("field.tel") }}</p>
-              <p class="text-[#808080]">{{ $t("about.tel") }}</p>
+        <div class="w-full xl:w-auto flex flex-col md:flex-row lg:flex-col lg:gap-3 mb-5 lg:mb-0">
+          <div class="w-full lg:w-auto flex flex-col gap-2 mb-5 lg:mb-0">
+            <!-- 電話 -->
+            <div class="w-auto flex gap-1.5">
+              <fa class="text-[#808080] w-5 translate-y-1" :icon="['fas', 'phone-alt']" />
+              <div class="w-auto flex flex-col gap-1.5">
+                <p>{{ $t("field.tel") }}</p>
+                <p class="text-[#808080]">{{ $t("about.tel") }}</p>
+              </div>
+            </div>
+            <!-- 傳真 -->
+            <div class="w-auto flex gap-1.5">
+              <fa class="text-[#808080] w-5 translate-y-1" :icon="['fas', 'fax']" />
+              <div class="w-auto flex flex-col gap-1.5">
+                <p>{{ $t("field.fax") }}</p>
+                <p class="text-[#808080]">{{ $t("about.fax") }}</p>
+              </div>
+            </div>
+            <!-- 地址 -->
+            <div class="w-auto flex gap-1.5">
+              <fa class="text-[#808080] w-5 translate-y-1" :icon="['fas', 'map-marker-alt']" />
+              <div class="w-auto flex flex-col gap-1.5">
+                <p>{{ $t("field.address") }}</p>
+                <a class="hover:underline text-[#808080]" href="https://goo.gl/maps/fgJDF1d4FpDEf7L98" target="_blank">{{ $t("about.address") }}</a>
+                <!-- <p class="text-[#808080]">{{ $t("about.address") }}</p> -->
+              </div>
             </div>
           </div>
-          <!-- 傳真 -->
-          <div class="w-auto flex gap-1.5">
-            <fa class="text-[#808080] w-5 translate-y-1" :icon="['fas', 'fax']" />
-            <div class="w-auto flex flex-col gap-1.5">
-              <p>{{ $t("field.fax") }}</p>
-              <p class="text-[#808080]">{{ $t("about.fax") }}</p>
-            </div>
-          </div>
-          <!-- 地址 -->
-          <div class="w-auto flex gap-1.5">
-            <fa class="text-[#808080] w-5 translate-y-1" :icon="['fas', 'map-marker-alt']" />
-            <div class="w-auto flex flex-col gap-1.5">
-              <p>{{ $t("field.address") }}</p>
-              <p class="text-[#808080]">{{ $t("about.address") }}</p>
-            </div>
-          </div>
+          <!-- google map -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.76050502949!2d121.47740921500574!3d25.00825268398444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a9cff4a72547%3A0xb1b5d20d08f2726a!2zQ0dUIOmJhem0u-enkeaKgOaciemZkOWFrOWPuA!5e0!3m2!1szh-TW!2stw!4v1648627407948!5m2!1szh-TW!2stw"
+            class="w-full lg:w-96 xl:w-[500px] h-48 lg:h-56"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
 
         <!-- form -->
-        <div class="w-full lg:w-auto lg:ml-auto">
+        <div class="w-full xl:w-auto xl:ml-auto">
           <!-- 公司名稱，聯絡人，職稱，連絡電話，聯絡地址，Email，詢問機型，詢問內容 -->
-          <ValidationObserver ref="form" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <ValidationObserver ref="form" class="grid grid-cols-1 xl:grid-cols-2 gap-3">
             <div class="flex flex-col gap-2">
               <!-- 公司名稱 -->
               <div class="flex flex-col gap-1 text-sm">
@@ -187,8 +199,6 @@ export default {
       const status = await this.$refs.form.validate();
       if (status) {
         this.btnLoading = true;
-        console.log(this.temp);
-        return;
 
         this.api.product
           .sendMail(this.temp)
