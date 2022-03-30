@@ -37,6 +37,18 @@
                 <li :class="{ 'text-primary font-bold': checkProduct(item.dtValue) }" v-for="item in productCategory" :key="item.id" @click="goProductPath(item.dtValue)">{{ item.name }}</li>
               </ul>
             </li>
+            <li>
+              <a class="inline-block text-2xl" data-bs-toggle="collapse" href="#langCollapse" role="button" aria-expanded="false" aria-controls="langCollapse">
+                <fa :icon="['fas', 'language']" />
+              </a>
+
+              <!-- 語言 -->
+              <ul class="collapse" id="langCollapse">
+                <li class="px-2 transition duration-300 hover:bg-primary hover:bg-opacity-10" :class="{ 'text-primary font-bold bg-primary bg-opacity-10': checkLocale(item.langCode), 'cursor-pointer': !checkLocale(item.langCode) }" v-for="(item, idx) in locales" :key="idx" @click="changeLang(item.langCode)">
+                  <a class="dropdown-item text-sm whitespace-nowrap">{{ item.langName }}</a>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
@@ -88,7 +100,7 @@ export default {
     },
     checkProduct() {
       return (val) => {
-        return (this.$route.query?.id || "") === val;
+        return (this.$route.query?.id || "") === val && (this.$route.path === "/product" || this.$route.matched[0].path);
       };
     },
     checkLocale() {

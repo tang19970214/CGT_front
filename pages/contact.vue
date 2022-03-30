@@ -8,12 +8,20 @@
       <div class="w-full flex flex-col lg:flex-row items-center md:items-start justify-between py-2 box-border mb-8">
         <!-- contact -->
         <div class="w-auto flex flex-col gap-2 mb-5 lg:mb-0">
-          <!-- 客服專線 -->
+          <!-- 電話 -->
           <div class="w-auto flex gap-1.5">
             <fa class="text-[#808080] w-5 translate-y-1" :icon="['fas', 'phone-alt']" />
             <div class="w-auto flex flex-col gap-1.5">
               <p>{{ $t("field.tel") }}</p>
-              <p class="text-[#808080]">(02)2225-8288</p>
+              <p class="text-[#808080]">{{ $t("about.tel") }}</p>
+            </div>
+          </div>
+          <!-- 傳真 -->
+          <div class="w-auto flex gap-1.5">
+            <fa class="text-[#808080] w-5 translate-y-1" :icon="['fas', 'fax']" />
+            <div class="w-auto flex flex-col gap-1.5">
+              <p>{{ $t("field.fax") }}</p>
+              <p class="text-[#808080]">{{ $t("about.fax") }}</p>
             </div>
           </div>
           <!-- 地址 -->
