@@ -16,6 +16,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'keywords', content: '鉅鴻, 鉅鴻科技, 鉅鴻科技有限公司, CGT, CGT TECHNOLOGY, 鉅鴻科技 CGT TECHNOLOGY' },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' }
     ],

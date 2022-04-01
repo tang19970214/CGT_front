@@ -6,20 +6,20 @@
       </div>
 
       <!-- 鉅鴻科技 -->
-      <div class="w-auto flex flex-col md:flex-row items-center gap-2 px-4 md:px-0 mt-2 mb-8">
-        <img class="w-28" src="~/static/images/logo_footer.png" alt="" />
+      <div class="w-auto flex flex-col md:flex-row items-center gap-2 px-4 md:px-0 mt-4 mb-8 lg:mb-12">
+        <img class="w-28 lg:w-32" src="~/static/images/logo_footer.png" alt="" />
 
         <div class="flex flex-col items-center md:items-start text-center gap-1">
-          <h1 class="text-xl">鉅鴻科技 CGT TECHNOLOGY</h1>
-          <p class="text-sm text-[#808080]">{{ $t("about.desc") }}</p>
+          <h1 class="text-xl lg:text-2xl">鉅鴻科技 CGT TECHNOLOGY</h1>
+          <p class="text-sm md:text-base lg:text-lg text-[#808080]">{{ $t("about.desc") }}</p>
         </div>
       </div>
 
       <!-- 專業研發｜技術領先｜以客為尊｜品質保證 -->
       <div class="w-full text-center">
-        <strong class="text-2xl text-primary">{{ $t("about.title") }}</strong>
+        <strong class="text-2xl lg:text-3xl text-primary">{{ $t("about.title") }}</strong>
 
-        <div class="w-full flex flex-col gap-5 text-left mt-4">
+        <div class="w-full flex flex-col gap-5 text-left mt-4 lg:text-lg tracking-wider">
           <p>{{ $t("about.content1") }}</p>
           <p>{{ $t("about.content2") }}</p>
         </div>

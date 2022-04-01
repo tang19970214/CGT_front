@@ -11,9 +11,12 @@
       <div class="hidden md:block ml-auto">
         <ul class="flex items-center gap-4">
           <li class="text-lg lg:text-xl text-primary border-b-2 transition duration-300 hover:border-primary" :class="{ 'font-bold border-primary': checkRoute(item.value), 'cursor-pointer border-transparent': !checkRoute(item.value) }" v-for="item in menuList" :key="item.id" @click="goPath(item.value)">{{ item.label }}</li>
-          <li class="text-xl lg:text-2xl text-primary">
+          <li class="text-primary text-lg lg:text-xl">
+            <!-- <select class="border-b border-primary bg-transparent font-bold focus:outline-none" v-model="langValue" @change="changeLang(langValue)">
+              <option :value="item.langCode" v-for="(item, idx) in locales" :key="idx">{{ item.langName }}</option>
+            </select> -->
             <div class="flex justify-center dropdown relative">
-              <fa class="cursor-pointer transition duration-300 hover:scale-110" :icon="['fas', 'language']" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" />
+              <fa class="cursor-pointer transition duration-300 hover:scale-110" :icon="['fas', 'globe']" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" />
               <ul class="dropdown-menu min-w-max absolute bg-white text-base z-50 float-left py-1 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none" aria-labelledby="dropdownMenuButton1">
                 <li class="py-1 px-4 transition duration-300 hover:bg-primary hover:bg-opacity-10" :class="{ 'text-primary font-bold bg-primary bg-opacity-10': checkLocale(item.langCode), 'cursor-pointer': !checkLocale(item.langCode) }" v-for="(item, idx) in locales" :key="idx" @click="changeLang(item.langCode)">
                   <a class="dropdown-item text-sm whitespace-nowrap">{{ item.langName }}</a>
@@ -39,7 +42,7 @@
             </li>
             <li>
               <a class="inline-block text-2xl" data-bs-toggle="collapse" href="#langCollapse" role="button" aria-expanded="false" aria-controls="langCollapse">
-                <fa :icon="['fas', 'language']" />
+                <fa :icon="['fas', 'globe']" />
               </a>
 
               <!-- 語言 -->
@@ -78,6 +81,7 @@ export default {
         { id: 4, label: this.$t("menu.news"), value: "/news" }, // 最新消息
         { id: 5, label: this.$t("menu.contact"), value: "/contact" }, // 聯絡我們
       ],
+      // langValue: Cookies.get("lang") || "zh-tw",
 
       openPhoneMenu: false,
     };
@@ -114,6 +118,7 @@ export default {
     ...mapMutations(["SET_LANG"]),
     changeLang(val) {
       if (this.checkLocale(val)) return;
+      this.langValue = val;
       this.SET_LANG(val);
       this.$i18n.locale = val;
       window.location.reload();

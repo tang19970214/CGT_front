@@ -1,7 +1,7 @@
 <template>
   <section class="w-full">
-    <div class="w-full flex justify-center">
-      <div class="w-full flex flex-col md:flex-row rounded-lg bg-white shadow-lg p-4 gap-4" v-for="item in list" :key="item.id">
+    <div class="w-full flex flex-col gap-3 lg:gap-5">
+      <div class="w-full flex flex-col md:flex-row rounded-lg bg-white border shadow-lg p-4 gap-4" v-for="item in list" :key="item.id">
         <img class="w-full md:w-auto max-h-[200px] object-cover" :src="`${imgUrl}/${item.photo}`" :alt="item.title" />
 
         <div class="w-full box-border flex flex-col justify-between">

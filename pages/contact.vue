@@ -7,7 +7,7 @@
 
       <div class="w-full flex flex-col lg:flex-row gap-2 items-center md:items-start justify-between py-2 box-border">
         <!-- contact -->
-        <div class="w-full xl:w-auto flex flex-col md:flex-row lg:flex-col lg:gap-3 mb-5 lg:mb-0">
+        <div class="w-full xl:w-auto flex flex-col md:flex-row lg:flex-col lg:gap-3 mb-5 lg:mb-0 lg:text-lg">
           <div class="w-full lg:w-auto flex flex-col gap-2 mb-5 lg:mb-0">
             <!-- 電話 -->
             <div class="w-auto flex gap-1.5">
@@ -38,7 +38,7 @@
           <!-- google map -->
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.76050502949!2d121.47740921500574!3d25.00825268398444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a9cff4a72547%3A0xb1b5d20d08f2726a!2zQ0dUIOmJhem0u-enkeaKgOaciemZkOWFrOWPuA!5e0!3m2!1szh-TW!2stw!4v1648627407948!5m2!1szh-TW!2stw"
-            class="w-full lg:w-96 xl:w-[500px] h-48 lg:h-56"
+            class="w-full lg:w-96 xl:w-[500px] h-48 lg:h-64"
             style="border: 0"
             allowfullscreen=""
             loading="lazy"
@@ -52,7 +52,7 @@
           <ValidationObserver ref="form" class="grid grid-cols-1 xl:grid-cols-2 gap-3">
             <div class="flex flex-col gap-2">
               <!-- 公司名稱 -->
-              <div class="flex flex-col gap-1 text-sm">
+              <div class="flex flex-col gap-1 text-sm lg:text-lg">
                 <label class="form-label tracking-widest inline-block text-gray-700" for="companyName">{{ $t("field.companyName") }}</label>
                 <div class="form-group relative">
                   <ValidationProvider :name="$t('field.companyName')" rules="required" v-slot="{ errors }" class="w-full">
@@ -63,7 +63,7 @@
                 </div>
               </div>
               <!-- 聯絡人 -->
-              <div class="flex flex-col gap-1 text-sm">
+              <div class="flex flex-col gap-1 text-sm lg:text-lg">
                 <label class="form-label tracking-widest inline-block text-gray-700" for="name">{{ $t("field.name") }}</label>
                 <div class="form-group relative">
                   <ValidationProvider :name="$t('field.name')" rules="required" v-slot="{ errors }" class="w-full">
@@ -74,7 +74,7 @@
                 </div>
               </div>
               <!-- 職稱 -->
-              <div class="flex flex-col gap-1 text-sm">
+              <div class="flex flex-col gap-1 text-sm lg:text-lg">
                 <label class="form-label tracking-widest inline-block text-gray-700" for="jobTitle">{{ $t("field.jobTitle") }}</label>
                 <div class="form-group relative">
                   <ValidationProvider :name="$t('field.jobTitle')" rules="required" v-slot="{ errors }" class="w-full">
@@ -85,7 +85,7 @@
                 </div>
               </div>
               <!-- 電子信箱 -->
-              <div class="flex flex-col gap-1 text-sm">
+              <div class="flex flex-col gap-1 text-sm lg:text-lg">
                 <label class="form-label tracking-widest inline-block text-gray-700" for="email">{{ $t("field.email") }}</label>
                 <div class="form-group relative">
                   <ValidationProvider :name="$t('field.email')" rules="required|email" v-slot="{ errors }" class="w-full">
@@ -96,7 +96,7 @@
                 </div>
               </div>
               <!-- 詢問機型 -->
-              <div class="flex flex-col gap-1 text-sm">
+              <div class="flex flex-col gap-1 text-sm lg:text-lg">
                 <label class="form-label tracking-widest inline-block text-gray-700" for="productName">{{ $t("field.productName") }}</label>
                 <div class="form-group relative">
                   <ValidationProvider :name="$t('field.productName')" rules="required" v-slot="{ errors }" class="w-full">
@@ -110,7 +110,7 @@
 
             <div class="flex flex-col gap-2">
               <!-- 聯絡電話 -->
-              <div class="flex flex-col gap-1 text-sm">
+              <div class="flex flex-col gap-1 text-sm lg:text-lg">
                 <label class="form-label tracking-widest inline-block text-gray-700" for="phone">{{ $t("field.phone") }}</label>
                 <div class="form-group relative">
                   <ValidationProvider :name="$t('field.phone')" rules="required|phone" v-slot="{ errors }" class="w-full">
@@ -121,7 +121,7 @@
                 </div>
               </div>
               <!-- 聯絡地址 -->
-              <div class="flex flex-col gap-1 text-sm">
+              <div class="flex flex-col gap-1 text-sm lg:text-lg">
                 <label class="form-label tracking-widest inline-block text-gray-700" for="address">{{ $t("field.formAddress") }}</label>
                 <div class="form-group relative">
                   <ValidationProvider :name="$t('field.formAddress')" rules="required" v-slot="{ errors }" class="w-full">
@@ -132,7 +132,7 @@
                 </div>
               </div>
               <!-- 詢問內容 -->
-              <div class="flex flex-col gap-1 text-sm">
+              <div class="flex flex-col gap-1 text-sm lg:text-lg">
                 <label class="form-label tracking-widest inline-block text-gray-700" for="content">{{ $t("field.content") }}</label>
                 <div class="form-group relative">
                   <ValidationProvider :name="$t('field.content')" rules="required" v-slot="{ errors }" class="w-full">
