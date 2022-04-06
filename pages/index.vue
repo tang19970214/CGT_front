@@ -5,6 +5,10 @@
     <a>
       <img width="100%" src="~/static/images/introduce.png" alt="" />
     </a>
+
+    <iframe class="w-full h-[30vh] md:h-[70vh] lg:h-[80vh] mt-5" src="https://www.youtube.com/embed/YvQgLBtfq3s" title="【CGT 真空式脫泡攪拌機】特點介紹" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <iframe class="w-full h-[30vh] md:h-[70vh] lg:h-[80vh] mt-5" src="https://www.youtube.com/embed/7KCyRngU1HI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </section>
 </template>
 

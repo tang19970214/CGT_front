@@ -124,7 +124,7 @@
             <div class="w-full form-group relative">
               <ValidationProvider :name="$t('field.address')" rules="required" v-slot="{ errors }" class="w-full">
                 <div class="w-full relative">
-                  <input id="address" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" :placeholder="$t('placeholder.address')" v-model="temp.address" />
+                  <input id="address" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" :placeholder="$t('placeholder.formAddress')" v-model="temp.address" />
                 </div>
               </ValidationProvider>
             </div>

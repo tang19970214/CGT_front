@@ -2,19 +2,31 @@
   <section class="w-full">
     <div class="w-full p-2 md:p-4 rounded-lg bg-white shadow-lg">
       <!-- head -->
-      <div class="w-full flex flex-col md:flex-row items-center gap-2 md:gap-4">
+      <div class="w-full p-2">
+        <strong class="text-xl lg:text-2xl">{{ list.title }}</strong>
+        <p class="text-gray-600 mt-1 text-lg">{{ list.summary }}</p>
+      </div>
+
+      <div class="w-full flex flex-col md:flex-row gap-4">
+        <img class="w-full md:w-1/2 object-cover" :src="`${imgUrl}/${list.photo}`" alt="" />
+
+        <div id="ck" class="w-full md:w-1/2" v-html="list.contents"></div>
+      </div>
+
+      <!-- head -->
+      <!-- <div class="w-full flex flex-col md:flex-row items-center gap-2 md:gap-4">
         <img class="w-full md:w-80 lg:w-96 object-cover" :src="`${imgUrl}/${list.photo}`" alt="" />
 
         <div class="w-full md:w-auto flex flex-col items-center">
           <strong class="text-lg md:text-xl lg:text-2xl">{{ list.title }}</strong>
           <p class="text-gray-600 text-sm md:text-base mt-4">{{ list.summary }}</p>
         </div>
-      </div>
+      </div> -->
 
       <!-- content (CK) -->
-      <div class="w-full mt-3 lg:mt-5">
-        <div v-html="list.contents"></div>
-      </div>
+      <!-- <div class="w-full mt-3 lg:mt-5">
+        <div class="break-words" v-html="list.contents"></div>
+      </div> -->
 
       <div class="w-full text-center mt-10 mb-3">
         <button class="py-1 px-3 border border-primary text-primary rounded bg-white transition duration-300 hover:bg-primary hover:text-white" @click="$router.push({ name: 'news' })">{{ $t("field.goBack") }}</button>
@@ -36,3 +48,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+::v-deep {
+  strong {
+    overflow-wrap: break-word !important;
+  }
+}
+</style>

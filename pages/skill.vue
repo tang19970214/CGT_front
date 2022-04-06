@@ -3,6 +3,8 @@
     <div class="w-full grid grid-cols-1 gap-3">
       <img class="w-full" :src="require(`~/static/images/skill${i}.png`)" alt="" v-for="i in 3" :key="i" />
     </div>
+
+    <iframe class="w-full h-[30vh] md:h-[70vh] lg:h-[80vh] mt-5" src="https://www.youtube.com/embed/5H70ZAjz6Jc" title="【CGT 真空式脫泡攪拌機】~MJ-2000V" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </section>
 </template>
 

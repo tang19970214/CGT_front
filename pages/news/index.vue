@@ -8,8 +8,6 @@
           <div class="w-full flex flex-col gap-2">
             <h5 class="text-gray-700 text-lg md:text-xl lg:text-2xl font-bold">{{ item.title }}</h5>
             <p class="newsContent text-gray-600 text-sm md:text-base">{{ item.summary }}</p>
-            <p class="newsContent text-gray-600 text-sm md:text-base">{{ item.summary }}</p>
-            <p class="newsContent text-gray-600 text-sm md:text-base">{{ item.summary }}</p>
           </div>
           <div class="w-full flex items-center justify-between mt-7 md:mt-0">
             <p class="text-gray-600 text-sm">{{ $t("field.postDate") }}：{{ $dayjs(item.postDate).format("YYYY-MM-DD") }}</p>
