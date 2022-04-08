@@ -1,6 +1,6 @@
 <template>
   <section class="w-full h-28 py-3 bg-[url('~/static/images/bgImg_footer.png')] bg-repeat">
-    <div class="w-full h-full max-w-[1280px] mx-auto">
+    <div class="w-full h-full max-w-[1080px] mx-auto">
       <div class="w-full h-full flex flex-col gap-2 items-center justify-center">
         <div class="w-full flex items-center justify-center gap-3">
           <img class="w-28 md:w-32 -translate-y-2" src="~/static/images/logo_footer.png" alt="" />

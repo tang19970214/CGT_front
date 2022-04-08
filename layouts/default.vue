@@ -3,7 +3,7 @@
     <section class="w-full min-h-screen font-sans bg-[url('~/static/images/bgImg.jpeg')] bg-no-repeat bg-top bg-fixed bg-cover">
       <!-- <Loading /> -->
       <Header :openHeaderBg="openHeaderBg" />
-      <Nuxt class="w-full max-w-[1280px] mx-auto pb-4 pt-10 box-border min-h-[calc(100vh-112px-64px)] md:min-h-[calc(100vh-112px-80px)] lg:min-h-[calc(100vh-112px-112px)]" />
+      <Nuxt class="w-full max-w-[1080px] mx-auto pb-4 pt-10 box-border min-h-[calc(100vh-112px-64px)] md:min-h-[calc(100vh-112px-80px)] lg:min-h-[calc(100vh-112px-112px)]" />
       <Footer />
 
       <!-- goTop -->
