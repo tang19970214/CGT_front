@@ -1,10 +1,10 @@
 <template>
   <section class="w-full">
     <div class="w-full flex flex-col gap-3 lg:gap-5">
-      <div class="w-full flex flex-col md:flex-row rounded-lg bg-white border shadow-lg p-4 gap-4" v-for="item in list" :key="item.id">
-        <img class="w-full md:w-auto max-h-[200px] object-cover" :src="`${imgUrl}/${item.photo}`" :alt="item.title" />
+      <div class="w-full grid grid-cols-12 rounded-lg bg-white border shadow-lg p-4 gap-4 box-border" v-for="item in list" :key="item.id">
+        <img class="w-full max-h-[300px] object-cover col-span-12 md:col-span-5" :src="`${imgUrl}/${item.photo}`" :alt="item.title" />
 
-        <div class="w-full box-border flex flex-col justify-between">
+        <div class="col-span-12 md:col-span-7 flex flex-col justify-between">
           <div class="w-full flex flex-col gap-2">
             <h5 class="text-gray-700 text-lg md:text-xl lg:text-2xl font-bold">{{ item.title }}</h5>
             <p class="newsContent text-gray-600 text-sm md:text-base">{{ item.summary }}</p>
