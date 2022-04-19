@@ -19,7 +19,6 @@ export default {
       { name: 'keywords', content: '鉅鴻, 鉅鴻科技, 鉅鴻科技有限公司, CGT, CGT TECHNOLOGY, 鉅鴻科技 CGT TECHNOLOGY' },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
-      { name: 'google-site-verification', content: 'ryDHDKS8ILnzJHuZADpLxpt6ty8LWzLpNbPUaLXl9TA' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
