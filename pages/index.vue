@@ -21,16 +21,7 @@ export default {
     // SEO
     const seoRes = await $api.webSEO.load({ WebPath: route.name });
     const seoList = seoRes.data.result || {};
-
-    // list
-    const listQuery = {
-      page: 1,
-      limit: 999,
-    };
-    const res = await $api.banner.load(listQuery);
-    const { code, data } = res.data;
-    if (code !== 200) return;
-    return { seoList, list: data };
+    return { seoList };
   },
   head() {
     return {
@@ -45,7 +36,25 @@ export default {
     };
   },
   data() {
-    return {};
+    return {
+      list: [],
+    };
+  },
+  methods: {
+    async getBannerList() {
+      const listQuery = {
+        page: 1,
+        limit: 999,
+      };
+      const res = await this.api.banner.load(listQuery);
+      const { code, data } = res.data;
+      if (code === 200) {
+        this.list = data;
+      }
+    },
+  },
+  mounted() {
+    this.getBannerList();
   },
 };
 </script>
