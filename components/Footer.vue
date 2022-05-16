@@ -9,7 +9,7 @@
               <div class="flex items-center">
                 <b>{{ $t("field.tel") }}</b
                 >：
-                <p class="text-xs md:text-sm lg:text-base">{{ $t("about.tel") }}</p>
+                <a href="tel:+886-2-22258288" class="text-xs md:text-sm lg:text-base hover:underline">{{ $t("about.tel") }}</a>
               </div>
               <div class="flex items-center">
                 <b>{{ $t("field.fax") }}</b

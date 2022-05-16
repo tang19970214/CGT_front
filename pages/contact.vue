@@ -14,7 +14,7 @@
               <fa class="text-[#808080] w-5 translate-y-1" :icon="['fas', 'phone-alt']" />
               <div class="w-auto flex flex-col gap-1.5">
                 <p>{{ $t("field.tel") }}</p>
-                <p class="text-[#808080]">{{ $t("about.tel") }}</p>
+                <a href="tel:+886-2-22258288" class="text-[#808080] hover:underline">{{ $t("about.tel") }}</a>
               </div>
             </div>
             <!-- 傳真 -->
