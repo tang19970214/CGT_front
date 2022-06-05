@@ -1,9 +1,9 @@
 <template>
   <client-only>
-    <section class="w-full min-h-screen font-sans bg-[url('~/static/images/bgImg.jpeg')] bg-no-repeat bg-top bg-fixed bg-cover">
+    <section class="w-full min-h-screen font-sans bg-[#E5E5E5] bg-no-repeat bg-top bg-fixed bg-cover">
       <!-- <Loading /> -->
-      <Header :openHeaderBg="openHeaderBg" />
-      <Nuxt class="w-full max-w-[1080px] mx-auto pb-4 pt-10 box-border min-h-[calc(100vh-112px-64px)] md:min-h-[calc(100vh-112px-80px)] lg:min-h-[calc(100vh-112px-112px)]" />
+      <Header />
+      <Nuxt class="w-full mx-auto pb-4 pt-0.5 md:pt-10 box-border min-h-[calc(100vh-112px-64px)] md:min-h-[calc(100vh-112px-80px)] lg:min-h-[calc(100vh-112px-112px)]" />
       <Footer />
 
       <!-- goTop -->
@@ -20,26 +20,26 @@ import { mapActions, mapState } from "vuex";
 export default {
   data() {
     return {
-      openHeaderBg: false,
+      // openHeaderBg: false,
       showGoTop: false,
-      scrollTop: "",
+      // scrollTop: "",
     };
   },
-  watch: {
-    scrollTop(val) {
-      if (+val > 50) {
-        this.openHeaderBg = true;
-      } else {
-        this.openHeaderBg = false;
-      }
+  // watch: {
+  //   scrollTop(val) {
+  //     if (+val > 50) {
+  //       this.openHeaderBg = true;
+  //     } else {
+  //       this.openHeaderBg = false;
+  //     }
 
-      if (+val > 500) {
-        this.showGoTop = true;
-      } else {
-        this.showGoTop = false;
-      }
-    },
-  },
+  //     if (+val > 500) {
+  //       this.showGoTop = true;
+  //     } else {
+  //       this.showGoTop = false;
+  //     }
+  //   },
+  // },
   computed: {
     ...mapState(["locale"]),
   },

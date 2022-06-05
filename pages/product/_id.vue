@@ -1,55 +1,49 @@
 <template>
-  <section class="w-full flex flex-col gap-5">
-    <div class="w-full border border-[#d9d9d9] bg-white shadow-md p-6 grid grid-cols-12 gap-5">
-      <div class="col-span-12 md:col-span-7">
-        <VueSlickCarousel v-bind="settings" ref="c1" :asNavFor="$refs.c2" :focusOnSelect="true">
-          <div v-for="(item, idx) in list.files" :key="idx">
-            <img class="w-full object-cover pointer-events-none" :src="`${imgUrl}/${item.filePath}`" :alt="item.fileName" />
-          </div>
-        </VueSlickCarousel>
-        <!-- 手機版輪播按鈕 -->
-        <button @click="changeImg(false)" class="absolute left-3 top-1/4 z-10 w-8 h-8 shadow-md rounded-full bg-primary p-2.5 flex md:hidden justify-center items-center duration-300 hover:bg-primary">
-          <fa icon="fa-solid fa-angle-left" class="text-white duration-300 group-hover:text-white"></fa>
-        </button>
-        <button @click="changeImg(true)" class="absolute right-3 top-1/4 z-10 w-8 h-8 shadow-md rounded-full bg-primary p-2.5 flex md:hidden justify-center items-center duration-300 hover:bg-primary">
-          <fa icon="fa-solid fa-angle-right" class="text-white duration-300 group-hover:text-white"></fa>
-        </button>
-        <div class="relative w-full">
-          <VueSlickCarousel :arrows="false" :slidesToShow="4" ref="c2" :asNavFor="$refs.c1" :focusOnSelect="true" class="mt-5 -mx-1">
-            <div v-for="(item, idx) in list.files" :key="'S_' + idx" class="pr-2" @click="changeImg(idx)">
-              <img class="w-full h-20 md:h-32 object-cover ml-1 pointer-events-none" :src="`${imgUrl}/${item.filePath}`" :alt="item.fileName" />
+  <section class="w-full flex flex-col">
+    <div class="w-full md:border border-[#d9d9d9] bg-white shadow-md p-4">
+      <div class="w-full grid grid-cols-12 gap-5 pb-16">
+        <div class="col-span-12 md:col-span-7">
+          <img class="w-full object-cover pointer-events-none" :src="`${imgUrl}/${list.files[0].filePath}`" :alt="list.files[0].fileName" />
+        </div>
+        <div class="col-span-12 md:col-span-5 w-full flex flex-col justify-between">
+          <div class="w-full flex flex-col">
+            <div class="w-full flex flex-col gap-2 pb-4 md:pb-7 border-b border-[#828282]">
+              <strong class="text-lg">{{ list.name }}</strong>
+              <span class="text-gray-500">{{ $t("product.productId") }}：{{ list.productCode }}</span>
             </div>
-          </VueSlickCarousel>
-          <!-- 電腦版輪播按鈕 -->
-          <button @click="changeImg(false)" class="absolute left-1 top-1/2 -translate-y-4 w-8 h-8 rounded-full bg-[#d9d9d9] p-2.5 hidden md:flex justify-center items-center duration-300 hover:bg-primary group">
-            <fa icon="fa-solid fa-angle-left" class="text-black duration-300 group-hover:text-white"></fa>
-          </button>
-          <button @click="changeImg(true)" class="absolute right-1 top-1/2 -translate-y-4 w-8 h-8 rounded-full bg-[#d9d9d9] p-2.5 hidden md:flex justify-center items-center duration-300 hover:bg-primary group">
-            <fa icon="fa-solid fa-angle-right" class="text-black duration-300 group-hover:text-white"></fa>
-          </button>
+
+            <div class="w-full py-4">
+              <div class="prodRule" v-html="list.files[2]"></div>
+            </div>
+          </div>
+
+          <button class="w-full p-2 box-border border border-primary bg-primary text-white transition duration-300 hover:bg-white hover:text-primary" @click="openQue(list.name)">{{ $t("product.ask") }}</button>
         </div>
       </div>
-      <div class="col-span-12 md:col-span-5 w-full flex flex-col gap-4">
-        <span class="text-gray-500">{{ $t("product.productId") }}：{{ list.productCode }}</span>
-        <strong class="text-lg">{{ list.name }}</strong>
-        <button class="w-full p-3 box-border border border-primary bg-primary text-white transition duration-300 hover:bg-white hover:text-primary" @click="openQue(list.name)">{{ $t("product.ask") }}</button>
+
+      <!-- tab -->
+      <div class="w-full flex items-center border-b border-[#828282]">
+        <div :class="{ 'border-[#15619E]': item.id === defaultTab, 'cursor-pointer': item.id !== defaultTab }" class="px-6 py-2 border-b-4 border-transparent transition duration-500" v-for="item in tabList" :key="item.id" @click="defaultTab = item.id">
+          {{ item.label }}
+        </div>
+      </div>
+      <!-- tab1 content -->
+      <div class="w-full pt-5" v-if="defaultTab === 1">
+        <img class="mx-auto w-4/5" :src="`${imgUrl}/${list.files[1].filePath}`" :alt="list.files[1].fileName" />
+      </div>
+      <!-- tab2 content -->
+      <div class="w-full pt-5" v-if="defaultTab === 2">
+        <div v-html="list.contents"></div>
       </div>
     </div>
 
-    <div class="w-full border border-[#d9d9d9] bg-white shadow-md p-6">
-      <!-- title -->
-      <div class="w-full pb-2 border-b border-[#d9d9d9]">
-        <strong class="text-lg tracking-widest">{{ $t("product.info") }}</strong>
-      </div>
-      <!-- content -->
-      <div class="w-full py-5 border-b border-[#d9d9d9]">
-        <div v-html="list.contents"></div>
-      </div>
-      <!-- footer -->
-      <div class="w-full flex pt-5 items-center justify-between">
-        <strong>{{ list.name }}</strong>
-        <button class="inline-block py-2 px-8 box-border border border-primary bg-primary text-white transition duration-300 hover:bg-white hover:text-primary" @click="openQue()">{{ $t("product.ask") }}</button>
-      </div>
+    <!-- more product -->
+    <div class="w-full mt-7 py-5 px-7 md:px-4">
+      <VueSlickCarousel class="" v-bind="settings">
+        <div v-for="item in productList" :key="item.id">
+          <img :class="{ 'cursor-not-allowed': $route.params.id === item.id }" class="mx-auto p-1 bg-white cursor-pointer hover:bg-white/70" width="95%" :src="`${imgUrl}/${item.files[0].filePath}`" :alt="item.title" @click="goProduct(item.id)" />
+        </div>
+      </VueSlickCarousel>
     </div>
 
     <!-- modal -->
@@ -167,28 +161,34 @@ const formTemplate = {
 
 export default {
   name: "product-id",
-  async asyncData({ app, $api, env, params }) {
+  async asyncData({ app, $api, env, params, query }) {
     const imgUrl = env.VUE_APP_IMG_URL;
 
     const listQuery = {
-      CategoryId: "",
+      CategoryId: query?.category,
       LangCode: app.$cookies.get("lang") || "zh-tw",
       page: 1,
       limit: 10,
-      key: params.id,
+      key: "",
     };
 
     const res = await $api.product.load(listQuery);
-    const { code, data, count } = res.data;
+    const { data, count } = res.data;
+
+    let productList = null;
+    let getProduct = null;
+
     if (data.length > 0) {
       data.map((i) => {
         i.files = JSON.parse(i.files);
         return i;
       });
-    }
-    if (code !== 200) return;
 
-    return { imgUrl, listQuery, list: data[0], total: count };
+      getProduct = data.filter((i) => i.id === params.id);
+      productList = data;
+    }
+
+    return { imgUrl, listQuery, list: getProduct[0], productList, total: count };
   },
   head() {
     return {
@@ -204,15 +204,23 @@ export default {
   },
   data() {
     return {
+      screenWidth: document.body.clientWidth,
+
       settings: {
         lazyLoad: "ondemand",
-        arrows: false,
-        edgeFriction: 0.35,
+        dots: true,
+        focusOnSelect: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
+        slidesToShow: 3,
+        slidesToScroll: 3,
       },
+
+      defaultTab: 1,
+      tabList: [
+        { id: 1, label: "商品規格" },
+        { id: 2, label: "商品詳情" },
+      ],
 
       openModal: false,
       btnLoading: false,
@@ -220,6 +228,18 @@ export default {
     };
   },
   methods: {
+    getScreenWidth() {
+      this.screenWidth = document.body.clientWidth;
+
+      if (this.screenWidth < 768) {
+        this.settings.slidesToShow = 2;
+        this.settings.slidesToScroll = 2;
+      } else {
+        this.settings.slidesToShow = 3;
+        this.settings.slidesToScroll = 3;
+      }
+    },
+
     // 圖片輪播
     changeImg(bool, idx) {
       if (idx) {
@@ -279,6 +299,35 @@ export default {
         });
       }
     },
+
+    goProduct(id) {
+      if (this.$route.params.id === id) return;
+      this.$router.push({
+        name: "product-id",
+        params: { id },
+        query: { category: this.$route.query.category },
+      });
+    },
+  },
+  mounted() {
+    window.addEventListener("resize", this.getScreenWidth);
+
+    if (this.screenWidth < 768) {
+      this.settings.slidesToShow = 2;
+      this.settings.slidesToScroll = 2;
+    } else {
+      this.settings.slidesToShow = 3;
+      this.settings.slidesToScroll = 3;
+    }
   },
 };
 </script>
+
+<style lang="scss" scoped>
+::v-deep {
+  .prodRule > table > tbody > tr > td:first-child {
+    min-width: 80px !important;
+    max-width: 80px !important;
+  }
+}
+</style>

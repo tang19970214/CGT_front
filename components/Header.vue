@@ -1,7 +1,7 @@
 <template>
-  <section class="sticky top-0 left-0 w-full h-16 md:h-20 lg:h-28 transition duration-300 z-20" :class="{ 'bg-white bg-opacity-80 shadow-[0px_4px_4px_rgba(140,140,140,0.25)]': openHeaderBg }">
-    <div class="w-full max-w-[1080px] h-full mx-auto px-3 md:px-5 box-border flex items-center justify-between">
-      <img class="w-44 md:w-36 lg:w-auto" :class="{ 'cursor-pointer': !checkRoute('/') }" src="~/static/images/CGT_logo.png" alt="鉅鴻科技" @click="goPath('/')" />
+  <section class="sticky top-0 left-0 w-full h-16 md:h-20 lg:h-28 bg-white transition duration-300 z-20 shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
+    <div class="w-full max-w-[1280px] h-full mx-auto px-3 md:px-8 box-border flex items-center justify-between">
+      <img class="w-44 md:w-48 lg:w-auto" :class="{ 'cursor-pointer': !checkRoute('/') }" src="~/static/images/CGT_logo.png" alt="鉅鴻科技" @click="goPath('/')" />
 
       <!-- menu -->
       <div @click="openPhoneMenu = !openPhoneMenu" class="md:hidden transition duration-200 z-40">
@@ -65,13 +65,6 @@ import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "Header",
-  props: {
-    openHeaderBg: {
-      type: Boolean,
-      required: true,
-      default: () => false,
-    },
-  },
   data() {
     return {
       menuList: [

@@ -1,13 +1,18 @@
 <template>
   <section class="w-full">
     <div class="w-full grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-5">
-      <div class="relative w-full p-1.5 md:p-2 bg-white shadow-md cursor-pointer" @mouseenter="openImgHover(item, true)" @mouseleave="openImgHover(item)" @click="goProductInfoPage(item)" v-for="item in list" :key="item.id" data-aos="fade-up" data-aos-duration="1000">
-        <img v-if="item.files[0]" :src="`${imgUrl}/${item.files[0].filePath}`" :alt="item.title" :title="item.title" />
-        <transition name="fade">
-          <div class="w-full h-full bg-white bg-opacity-70 absolute top-0 left-0 z-10 flex items-center justify-center text-center" v-if="item.openHover">
-            <strong class="lg:text-xl text-gray-700">{{ item.name }}</strong>
-          </div>
-        </transition>
+      <div class="relative w-full bg-white shadow-md cursor-pointer" @mouseenter="openImgHover(item, true)" @mouseleave="openImgHover(item)" @click="goProductInfoPage(item)" v-for="item in list" :key="item.id" data-aos="fade-up" data-aos-duration="1000">
+        <div class="w-full">
+          <img v-if="item.files[0]" :src="`${imgUrl}/${item.files[0].filePath}`" :alt="item.title" :title="item.title" width="100%" />
+          <transition name="fade">
+            <div class="w-full h-full bg-white bg-opacity-70 absolute top-0 left-0 z-10 flex items-center justify-center text-center" v-if="item.openHover">
+              <strong class="lg:text-xl text-gray-700">{{ item.name }}</strong>
+            </div>
+          </transition>
+        </div>
+        <div class="w-full bg-white p-3">
+          <p>{{ item.name }}</p>
+        </div>
       </div>
     </div>
   </section>
@@ -35,7 +40,6 @@ export default {
     const res = await $api.product.load(listQuery);
     const { code, data, count } = res.data;
     const list = data.map((i) => {
-      console.log(i);
       i.files = JSON.parse(i.files);
       i.openHover = false;
       return i;
@@ -68,18 +72,11 @@ export default {
       getItem[0].openHover = bool;
     },
     goProductInfoPage(item) {
-      if (!!this.defaultMenu) {
-        this.$router.push({
-          name: "product-id",
-          params: { id: item.id },
-        });
-      } else {
-        this.$router.push({
-          name: "product-id",
-          params: { id: item.id },
-          query: { category: item.categoryId },
-        });
-      }
+      this.$router.push({
+        name: "product-id",
+        params: { id: item.id },
+        query: { category: item.categoryId },
+      });
     },
   },
 };

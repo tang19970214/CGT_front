@@ -57,7 +57,7 @@
                 <div class="form-group relative">
                   <ValidationProvider :name="$t('field.companyName')" rules="required" v-slot="{ errors }" class="w-full">
                     <div class="w-full relative">
-                      <input id="companyName" type="text" class="form-control w-full p-2 text-gray-700 border border-[#d9d9d9] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ 'border-[#EF4444]': errors.length > 0 }" :placeholder="$t('placeholder.companyName')" v-model="temp.companyName" />
+                      <input id="companyName" type="text" class="form-control w-full p-2 text-gray-700 border border-[#d9d9d9] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ 'border-[#EF4444]': errors.length > 0 }" v-model="temp.companyName" />
                     </div>
                   </ValidationProvider>
                 </div>
@@ -68,7 +68,7 @@
                 <div class="form-group relative">
                   <ValidationProvider :name="$t('field.name')" rules="required" v-slot="{ errors }" class="w-full">
                     <div class="w-full relative">
-                      <input id="name" type="text" class="form-control w-full p-2 text-gray-700 border border-[#d9d9d9] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ 'border-[#EF4444]': errors.length > 0 }" :placeholder="$t('placeholder.name')" v-model="temp.name" />
+                      <input id="name" type="text" class="form-control w-full p-2 text-gray-700 border border-[#d9d9d9] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ 'border-[#EF4444]': errors.length > 0 }" v-model="temp.name" />
                     </div>
                   </ValidationProvider>
                 </div>
@@ -77,9 +77,9 @@
               <div class="flex flex-col gap-1 text-sm lg:text-lg">
                 <label class="form-label tracking-widest inline-block text-gray-700" for="jobTitle">{{ $t("field.jobTitle") }}</label>
                 <div class="form-group relative">
-                  <ValidationProvider :name="$t('field.jobTitle')" rules="required" v-slot="{ errors }" class="w-full">
+                  <ValidationProvider :name="$t('field.jobTitle')" class="w-full">
                     <div class="w-full relative">
-                      <input id="jobTitle" type="text" class="form-control w-full p-2 text-gray-700 border border-[#d9d9d9] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ 'border-[#EF4444]': errors.length > 0 }" :placeholder="$t('placeholder.jobTitle')" v-model="temp.jobTitle" />
+                      <input id="jobTitle" type="text" class="form-control w-full p-2 text-gray-700 border border-[#d9d9d9] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" v-model="temp.jobTitle" />
                     </div>
                   </ValidationProvider>
                 </div>
@@ -90,7 +90,7 @@
                 <div class="form-group relative">
                   <ValidationProvider :name="$t('field.email')" rules="required|email" v-slot="{ errors }" class="w-full">
                     <div class="w-full relative">
-                      <input id="email" type="text" class="form-control w-full p-2 text-gray-700 border border-[#d9d9d9] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ 'border-[#EF4444]': errors.length > 0 }" :placeholder="$t('placeholder.email')" v-model="temp.email" />
+                      <input id="email" type="text" class="form-control w-full p-2 text-gray-700 border border-[#d9d9d9] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ 'border-[#EF4444]': errors.length > 0 }" v-model="temp.email" />
                     </div>
                   </ValidationProvider>
                 </div>
@@ -101,7 +101,7 @@
                 <div class="form-group relative">
                   <ValidationProvider :name="$t('field.productName')" rules="required" v-slot="{ errors }" class="w-full">
                     <div class="w-full relative">
-                      <input id="productName" type="text" class="form-control w-full p-2 text-gray-700 border border-[#d9d9d9] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ 'border-[#EF4444]': errors.length > 0 }" :placeholder="$t('placeholder.productName')" v-model="temp.productName" />
+                      <input id="productName" type="text" class="form-control w-full p-2 text-gray-700 border border-[#d9d9d9] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ 'border-[#EF4444]': errors.length > 0 }" v-model="temp.productName" />
                     </div>
                   </ValidationProvider>
                 </div>
@@ -113,9 +113,9 @@
               <div class="flex flex-col gap-1 text-sm lg:text-lg">
                 <label class="form-label tracking-widest inline-block text-gray-700" for="phone">{{ $t("field.phone") }}</label>
                 <div class="form-group relative">
-                  <ValidationProvider :name="$t('field.phone')" rules="required|phone" v-slot="{ errors }" class="w-full">
+                  <ValidationProvider :name="$t('field.phone')" class="w-full">
                     <div class="w-full relative">
-                      <input id="phone" type="text" class="form-control w-full p-2 text-gray-700 border border-[#d9d9d9] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ 'border-[#EF4444]': errors.length > 0 }" :placeholder="$t('placeholder.phone')" v-model="temp.phone" />
+                      <input id="phone" type="text" class="form-control w-full p-2 text-gray-700 border border-[#d9d9d9] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" v-model="temp.phone" />
                     </div>
                   </ValidationProvider>
                 </div>
@@ -126,7 +126,7 @@
                 <div class="form-group relative">
                   <ValidationProvider :name="$t('field.formAddress')" rules="required" v-slot="{ errors }" class="w-full">
                     <div class="w-full relative">
-                      <input id="address" type="text" class="form-control w-full p-2 text-gray-700 border border-[#d9d9d9] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ 'border-[#EF4444]': errors.length > 0 }" :placeholder="$t('placeholder.formAddress')" v-model="temp.address" />
+                      <input id="address" type="text" class="form-control w-full p-2 text-gray-700 border border-[#d9d9d9] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ 'border-[#EF4444]': errors.length > 0 }" v-model="temp.address" />
                     </div>
                   </ValidationProvider>
                 </div>
@@ -135,9 +135,9 @@
               <div class="flex flex-col gap-1 text-sm lg:text-lg">
                 <label class="form-label tracking-widest inline-block text-gray-700" for="content">{{ $t("field.content") }}</label>
                 <div class="form-group relative">
-                  <ValidationProvider :name="$t('field.content')" rules="required" v-slot="{ errors }" class="w-full">
+                  <ValidationProvider :name="$t('field.content')" class="w-full">
                     <div class="w-full relative">
-                      <textarea name="content" id="content" cols="30" rows="8" class="form-control w-full p-2 text-gray-700 border border-[#d9d9d9] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ 'border-[#EF4444]': errors.length > 0 }" :placeholder="$t('placeholder.content')" v-model="temp.contents"></textarea>
+                      <textarea name="content" id="content" cols="30" rows="8" class="form-control w-full p-2 text-gray-700 border border-[#d9d9d9] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" v-model="temp.contents"></textarea>
                     </div>
                   </ValidationProvider>
                 </div>

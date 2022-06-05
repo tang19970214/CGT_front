@@ -1,34 +1,26 @@
 <template>
-  <section class="w-full h-28 py-3 bg-[url('~/static/images/bgImg_footer.png')] bg-repeat">
-    <div class="w-full h-full max-w-[1080px] mx-auto">
-      <div class="w-full h-full flex flex-col gap-2 items-center justify-center">
-        <div class="w-full flex items-center justify-center gap-3">
-          <img class="w-28 md:w-32 -translate-y-2" src="~/static/images/logo_footer.png" alt="" />
-          <div class="flex flex-col gap-2">
-            <div class="flex flex-col md:flex-row gap-1 md:gap-3">
-              <div class="flex items-center">
-                <b>{{ $t("field.tel") }}</b
-                >：
-                <a href="tel:+886-2-22258288" class="text-xs md:text-sm lg:text-base hover:underline">{{ $t("about.tel") }}</a>
-              </div>
-              <div class="flex items-center">
-                <b>{{ $t("field.fax") }}</b
-                >：
-                <p class="text-xs md:text-sm lg:text-base">{{ $t("about.fax") }}</p>
-              </div>
+  <section class="w-full md:h-28 p-5 bg-[#333333]">
+    <div class="w-full h-full max-w-[1280px] mx-auto">
+      <div class="w-full h-full flex flex-col gap-2 items-center justify-center text-white">
+        <div class="w-full flex flex-col items-start md:flex-row md:items-center justify-center gap-5 lg:gap-32">
+          <img class="h-12" src="~/static/images/CGT_logo.png" alt="鉅鴻科技" />
+
+          <div class="flex flex-col gap-2 lg:gap-1">
+            <div class="flex items-center">
+              <label>{{ $t("field.tel") }}：</label>
+              <a href="tel:+886-2-22258288" class="hover:underline">{{ $t("about.tel") }}</a>
             </div>
 
-            <div class="hidden md:block">
-              <div class="w-full max-w-[400px] lg:max-w-full flex">
-                <b>{{ $t("field.address") }}</b
-                >：<a class="hover:underline text-xs md:text-sm lg:text-base" href="https://goo.gl/maps/fgJDF1d4FpDEf7L98" target="_blank">{{ $t("about.address") }}</a>
-              </div>
+            <div class="flex items-center">
+              <label>{{ $t("field.fax") }}：</label>
+              <p>{{ $t("about.fax") }}</p>
+            </div>
+
+            <div class="flex items-center">
+              <label>{{ $t("field.address") }}：</label>
+              <a class="hover:underline" href="https://goo.gl/maps/fgJDF1d4FpDEf7L98" target="_blank">{{ $t("about.address") }}</a>
             </div>
           </div>
-        </div>
-        <div class="md:hidden w-full max-w-[330px] flex items-center justify-center">
-          <b>{{ $t("field.address") }}</b
-          >：<a class="hover:underline text-xs md:text-sm lg:text-base" href="https://goo.gl/maps/fgJDF1d4FpDEf7L98" target="_blank">{{ $t("about.address") }}</a>
         </div>
       </div>
     </div>

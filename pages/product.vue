@@ -1,10 +1,10 @@
 <template>
-  <section class="relative px-3 md:px-6 lg:px-0 grid grid-cols-12 gap-2">
+  <section class="relative md:px-6 lg:px-0 grid grid-cols-12 gap-2">
     <div class="hidden md:block col-span-3 lg:col-span-2">
       <div class="w-full h-full px-1">
-        <ul class="relative flex flex-col gap-2 text-lg">
-          <li class="relative transition duration-300 hover:shadow-md" v-for="item in list" :key="item.id" @click="setActive(item.dtValue)">
-            <a class="flex items-center justify-between py-2 px-4 tracking-wider whitespace-nowrap hover:text-primary transition duration-300 ease-in-out cursor-pointer" :class="{ 'text-primary font-bold': defaultMenu === item.dtValue, 'text-gray-500': defaultMenu !== item.dtValue }">
+        <ul class="relative flex flex-col py-2 text-lg bg-white">
+          <li class="relative p-3 bg-white cursor-pointer transition duration-300 hover:shadow-md hover:bg-[#EFEFEF]" v-for="item in list" :key="item.id" @click="setActive(item.dtValue)">
+            <a class="flex items-center justify-between tracking-wider hover:text-primary transition duration-300 ease-in-out" :class="{ 'text-primary font-bold': defaultMenu === item.dtValue, 'text-gray-500': defaultMenu !== item.dtValue }">
               <span>{{ item.name }}</span>
             </a>
           </li>
