@@ -2,7 +2,7 @@
   <section class="w-full">
     <div class="w-full flex flex-col gap-3 lg:gap-5">
       <div class="w-full grid grid-cols-12 rounded-lg bg-white border shadow-lg p-4 gap-4 box-border" v-for="item in list" :key="item.id">
-        <img class="w-full max-h-[300px] object-cover col-span-12 md:col-span-5" :src="`${imgUrl}/${item.photo}`" :alt="item.title" />
+        <img width="100%" class="max-h-[300px] object-cover col-span-12 md:col-span-5" :src="`${imgUrl}/${item.photo}`" :alt="item.title" />
 
         <div class="col-span-12 md:col-span-7 flex flex-col justify-between">
           <div class="w-full flex flex-col gap-2">

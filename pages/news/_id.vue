@@ -8,7 +8,7 @@
       </div>
 
       <div class="w-full grid grid-cols-12 gap-4">
-        <img class="w-full object-cover col-span-12 md:col-span-4" :src="`${imgUrl}/${list.photo}`" alt="" />
+        <img width="100%" class="object-cover col-span-12 md:col-span-4" :src="`${imgUrl}/${list.photo}`" alt="" />
 
         <div id="ck" class="w-full col-span-12 md:col-span-8" v-html="list.contents"></div>
       </div>

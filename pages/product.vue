@@ -1,6 +1,6 @@
 <template>
-  <section class="relative md:px-6 lg:px-0 grid grid-cols-12 gap-2">
-    <div class="hidden md:block col-span-3 lg:col-span-2">
+  <section class="relative md:px-6 lg:px-2 grid grid-cols-12 gap-2">
+    <div class="hidden md:block col-span-4 lg:col-span-2">
       <div class="w-full h-full px-1">
         <ul class="relative flex flex-col py-2 text-lg bg-white">
           <li class="relative p-3 bg-white cursor-pointer transition duration-300 hover:shadow-md hover:bg-[#EFEFEF]" v-for="item in list" :key="item.id" @click="setActive(item.dtValue)">
@@ -11,7 +11,7 @@
         </ul>
       </div>
     </div>
-    <div class="col-span-12 md:col-span-9 lg:col-span-10">
+    <div class="col-span-12 md:col-span-8 lg:col-span-10">
       <Nuxt-child :defaultMenu="defaultMenu" />
     </div>
   </section>

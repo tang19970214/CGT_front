@@ -1,9 +1,9 @@
 <template>
   <section>
-    <VueSlickCarousel :arrows="true" v-bind="settings" autoplay v-if="carouselArr.length > 0">
+    <VueSlickCarousel :arrows="true" autoplay v-if="carouselArr.length > 0">
       <div v-for="item in carouselArr" :key="item.id" class="w-full relative">
         <a :href="!!item.links ? item.links : false" target="_blank">
-          <img class="w-full pointer-events-none h-full object-cover" :src="`${imgUrl}/${item.files}`" :alt="item.title" />
+          <img width="100%" class="pointer-events-none h-full object-cover" :src="`${imgUrl}/${item.files}`" :alt="item.title" />
         </a>
       </div>
     </VueSlickCarousel>
@@ -20,45 +20,8 @@ export default {
   },
   data() {
     return {
-      screenWidth: document.body.clientWidth,
-
       imgUrl: process.env.VUE_APP_IMG_URL,
-      settings: {
-        centerMode: true,
-        centerPadding: "100px",
-        focusOnSelect: true,
-        infinite: true,
-        slidesToShow: 1,
-        speed: 1000,
-      },
     };
-  },
-  methods: {
-    getScreenWidth() {
-      this.screenWidth = document.body.clientWidth;
-
-      if (this.screenWidth < 430) {
-        this.settings.centerPadding = "20px";
-      } else if (this.screenWidth < 768) {
-        this.settings.centerPadding = "40px";
-      } else {
-        this.settings.centerPadding = "100px";
-      }
-    },
-  },
-  mounted() {
-    window.addEventListener("resize", this.getScreenWidth);
-
-    if (this.screenWidth < 430) {
-      this.settings.centerPadding = "20px";
-    } else if (this.screenWidth < 768) {
-      this.settings.centerPadding = "40px";
-    } else {
-      this.settings.centerPadding = "100px";
-    }
-  },
-  beforeDestroy() {
-    window.removeEventListener("resize", this.getScreenWidth);
   },
 };
 </script>

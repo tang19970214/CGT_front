@@ -1,6 +1,6 @@
 <template>
-  <section class="px-3 md:px-6 lg:px-0 bg-[url('~/static/images/about.png')] bg-cover">
-    <div class="w-full md:max-w-[80%] xl:max-w-[1280px] mx-auto border border-[#d9d9d9] rounded bg-white bg-opacity-80 p-5 shadow-md">
+  <section class="px-3 md:px-6 lg:px-0 !py-4 bg-[url('~/static/images/about.jpeg')] bg-cover flex items-center">
+    <div class="w-full md:max-w-[85%] xl:max-w-[1080px] mx-auto border border-[#d9d9d9] rounded bg-white bg-opacity-80 p-4 md:p-8 shadow-md">
       <!-- 鉅鴻科技 -->
       <div class="w-auto flex flex-col md:flex-row items-center gap-5 px-4 md:px-0 mt-4 mb-8 lg:mb-12">
         <img class="w-28 lg:w-32" src="~/static/images/logo_footer.png" alt="" />
@@ -15,7 +15,7 @@
       <div class="w-full">
         <strong class="text-lg lg:text-xl text-[#333333]">{{ $t("about.title") }}</strong>
 
-        <div class="w-full flex flex-col gap-5 text-left text-[#4F4F4F] mt-4 lg:text-lg tracking-wider">
+        <div class="w-full flex flex-col gap-5 text-left mt-4 lg:text-lg tracking-wider">
           <p>{{ $t("about.content1") }}</p>
           <p>{{ $t("about.content2") }}</p>
         </div>

@@ -1,6 +1,6 @@
 <template>
   <section class="w-full md:h-28 p-5 bg-[#333333]">
-    <div class="w-full h-full max-w-[1280px] mx-auto">
+    <div class="w-full h-full max-w-[1080px] mx-auto">
       <div class="w-full h-full flex flex-col gap-2 items-center justify-center text-white">
         <div class="w-full flex flex-col items-start md:flex-row md:items-center justify-center gap-5 lg:gap-32">
           <img class="h-12" src="~/static/images/CGT_logo.png" alt="鉅鴻科技" />

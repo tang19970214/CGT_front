@@ -3,7 +3,7 @@
     <div class="w-full md:border border-[#d9d9d9] bg-white shadow-md p-4">
       <div class="w-full grid grid-cols-12 gap-5 pb-16">
         <div class="col-span-12 md:col-span-7">
-          <img class="w-full object-cover pointer-events-none" :src="`${imgUrl}/${list.files[0].filePath}`" :alt="list.files[0].fileName" />
+          <img v-if="list.files[0]" width="100%" class="object-cover pointer-events-none" :src="`${imgUrl}/${list.files[0].filePath}`" :alt="list.files[0].fileName" />
         </div>
         <div class="col-span-12 md:col-span-5 w-full flex flex-col justify-between">
           <div class="w-full flex flex-col">
@@ -29,7 +29,7 @@
       </div>
       <!-- tab1 content -->
       <div class="w-full pt-5" v-if="defaultTab === 1">
-        <img class="mx-auto w-4/5" :src="`${imgUrl}/${list.files[1].filePath}`" :alt="list.files[1].fileName" />
+        <img v-if="list.files[1]" class="mx-auto w-4/5" :src="`${imgUrl}/${list.files[1].filePath}`" :alt="list.files[1].fileName" />
       </div>
       <!-- tab2 content -->
       <div class="w-full pt-5" v-if="defaultTab === 2">
@@ -38,7 +38,7 @@
     </div>
 
     <!-- more product -->
-    <div class="w-full mt-7 py-5 px-7 md:px-4">
+    <div class="w-full mt-7 py-5 px-7 md:px-9">
       <VueSlickCarousel class="" v-bind="settings">
         <div v-for="item in productList" :key="item.id">
           <img :class="{ 'cursor-not-allowed': $route.params.id === item.id }" class="mx-auto p-1 bg-white cursor-pointer hover:bg-white/70" width="95%" :src="`${imgUrl}/${item.files[0].filePath}`" :alt="item.title" @click="goProduct(item.id)" />
@@ -63,7 +63,7 @@
             <div class="w-full form-group relative">
               <ValidationProvider :name="$t('field.companyName')" rules="required" v-slot="{ errors }" class="w-full">
                 <div class="w-full relative">
-                  <input id="companyName" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" :placeholder="$t('placeholder.companyName')" v-model="temp.companyName" />
+                  <input id="companyName" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" v-model="temp.companyName" />
                 </div>
               </ValidationProvider>
             </div>
@@ -74,7 +74,7 @@
             <div class="w-full form-group relative">
               <ValidationProvider :name="$t('field.name')" rules="required" v-slot="{ errors }" class="w-full">
                 <div class="w-full relative">
-                  <input id="name" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" :placeholder="$t('placeholder.name')" v-model="temp.name" />
+                  <input id="name" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" v-model="temp.name" />
                 </div>
               </ValidationProvider>
             </div>
@@ -83,9 +83,9 @@
           <div class="w-full flex items-center gap-2">
             <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700" for="jobTitle">{{ $t("field.jobTitle") }}</label>
             <div class="w-full form-group relative">
-              <ValidationProvider :name="$t('field.jobTitle')" rules="required" v-slot="{ errors }" class="w-full">
+              <ValidationProvider :name="$t('field.jobTitle')" class="w-full">
                 <div class="w-full relative">
-                  <input id="jobTitle" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" :placeholder="$t('placeholder.jobTitle')" v-model="temp.jobTitle" />
+                  <input id="jobTitle" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" v-model="temp.jobTitle" />
                 </div>
               </ValidationProvider>
             </div>
@@ -96,7 +96,7 @@
             <div class="w-full form-group relative">
               <ValidationProvider :name="$t('field.email')" rules="required|email" v-slot="{ errors }" class="w-full">
                 <div class="w-full relative">
-                  <input id="email" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" :placeholder="$t('placeholder.email')" v-model="temp.email" />
+                  <input id="email" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" v-model="temp.email" />
                 </div>
               </ValidationProvider>
             </div>
@@ -105,9 +105,9 @@
           <div class="w-full flex items-center gap-2">
             <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700" for="phone">{{ $t("field.phone") }}</label>
             <div class="w-full form-group relative">
-              <ValidationProvider :name="$t('field.phone')" rules="required|phone" v-slot="{ errors }" class="w-full">
+              <ValidationProvider :name="$t('field.phone')" class="w-full">
                 <div class="w-full relative">
-                  <input id="phone" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" :placeholder="$t('placeholder.phone')" v-model="temp.phone" />
+                  <input id="phone" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" v-model="temp.phone" />
                 </div>
               </ValidationProvider>
             </div>
@@ -118,7 +118,7 @@
             <div class="w-full form-group relative">
               <ValidationProvider :name="$t('field.address')" rules="required" v-slot="{ errors }" class="w-full">
                 <div class="w-full relative">
-                  <input id="address" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" :placeholder="$t('placeholder.formAddress')" v-model="temp.address" />
+                  <input id="address" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" v-model="temp.address" />
                 </div>
               </ValidationProvider>
             </div>
@@ -127,9 +127,9 @@
           <div class="w-full flex items-center gap-2">
             <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700" for="contents">{{ $t("field.content") }}</label>
             <div class="w-full form-group relative">
-              <ValidationProvider :name="$t('field.content')" rules="required" v-slot="{ errors }" class="w-full">
+              <ValidationProvider :name="$t('field.content')" class="w-full">
                 <div class="w-full relative">
-                  <textarea id="contents" v-model="temp.contents" rows="7" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" :placeholder="$t('placeholder.content')" />
+                  <textarea id="contents" v-model="temp.contents" rows="7" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" />
                 </div>
               </ValidationProvider>
             </div>
