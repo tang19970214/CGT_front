@@ -20,33 +20,14 @@
 <script>
 export default {
   name: "product",
-  async asyncData({ $api, route, query }) {
-    // SEO
-    const seoRes = await $api.webSEO.load({ WebPath: route.name });
-    const seoList = seoRes.data.result || {};
+  async asyncData({ $api, route }) {
+    if (process.server) {
+      // SEO
+      const seoRes = await $api.webSEO.load({ WebPath: route.name });
+      const seoList = seoRes.data.result || {};
 
-    const defaultMenu = query.category || query.id || "";
-
-    const listQuery = {
-      page: 1,
-      limit: 999,
-    };
-
-    let list = [
-      {
-        id: "",
-        name: "全部",
-        dtCode: "",
-        dtValue: "",
-        sort: 0,
-      },
-    ];
-    const res = await $api.category.load(listQuery);
-    const { code, data } = res.data;
-    if (code !== 200) return;
-    list.push(...data);
-
-    return { seoList, defaultMenu, listQuery, list };
+      return { seoList };
+    }
   },
   head() {
     return {
@@ -54,22 +35,48 @@ export default {
       meta: [
         { name: "title", content: `${process.env.VUE_APP_WEBNAME}｜${this.$t("menu.product")}` },
         { hid: "og:title", property: "og:title", content: `${process.env.VUE_APP_WEBNAME}｜${this.$t("menu.product")}` },
-        { name: "keywords", content: this.seoList.seoKeyword || "" },
-        { hid: "description", name: "description", content: this.seoList.seoDescription || "" },
-        { hid: "og:description", property: "og:description", content: this.seoList.seoDescription || "" },
+        { name: "keywords", content: this.seoList?.seoKeyword || "" },
+        { hid: "description", name: "description", content: this.seoList?.seoDescription || "" },
+        { hid: "og:description", property: "og:description", content: this.seoList?.seoDescription || "" },
+      ],
+    };
+  },
+  data() {
+    return {
+      defaultMenu: null,
+      list: [
+        {
+          id: "",
+          name: "全部",
+          dtCode: "",
+          dtValue: "",
+          sort: 0,
+        },
       ],
     };
   },
   watch: {
     $route(to) {
-      if (to.query.category) {
+      if (to.query?.category) {
         this.defaultMenu = to.query.category;
       }
     },
   },
   methods: {
+    getList() {
+      const params = {
+        page: 1,
+        limit: 999,
+      };
+      this.api.category.load(params).then((res) => {
+        const { code, data } = res.data;
+        if (code === 200) {
+          this.list.push(...data);
+          console.log(this.list);
+        }
+      });
+    },
     setActive(val) {
-      // if (this.defaultMenu === val) return;
       this.defaultMenu = val;
 
       if (this.defaultMenu === "") {
@@ -81,6 +88,11 @@ export default {
         });
       }
     },
+  },
+  mounted() {
+    this.defaultMenu = this.$route?.query?.category || this.$route?.query?.id || "";
+
+    this.getList();
   },
 };
 </script>

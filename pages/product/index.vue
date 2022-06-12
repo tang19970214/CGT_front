@@ -27,26 +27,19 @@ export default {
       default: () => "",
     },
   },
-  async asyncData({ app, $api, env, query }) {
-    const imgUrl = env.VUE_APP_IMG_URL;
-    const listQuery = {
-      CategoryId: query?.id,
-      LangCode: app.$cookies.get("lang") || "zh-tw",
-      page: 1,
-      limit: 999,
-      key: "",
+  data() {
+    return {
+      listQuery: {
+        CategoryId: "",
+        LangCode: "",
+        page: 1,
+        limit: 999,
+        key: undefined,
+      },
+      imgUrl: process.env.VUE_APP_IMG_URL,
+      list: [],
+      total: 0,
     };
-
-    const res = await $api.product.load(listQuery);
-    const { code, data, count } = res.data;
-    const list = data.map((i) => {
-      i.files = JSON.parse(i.files);
-      i.openHover = false;
-      return i;
-    });
-    if (code !== 200) return;
-
-    return { imgUrl, listQuery, list, total: count };
   },
   watch: {
     $route(to) {
@@ -55,15 +48,19 @@ export default {
     },
   },
   methods: {
-    getList() {
-      this.api.product.load(this.listQuery).then((res) => {
-        const { code, data } = res.data;
+    async getList() {
+      this.listQuery.CategoryId = this.$route?.query?.id;
+      this.listQuery.LangCode = this.$cookies.get("lang") || "zh-tw";
+
+      await this.api.product.load(this.listQuery).then((res) => {
+        const { code, data, count } = res.data;
         if (code === 200) {
           this.list = data.map((i) => {
             i.files = JSON.parse(i.files);
             i.openHover = false;
             return i;
           });
+          this.total = count;
         }
       });
     },
@@ -78,6 +75,9 @@ export default {
         query: { category: item.categoryId },
       });
     },
+  },
+  mounted() {
+    this.getList();
   },
 };
 </script>

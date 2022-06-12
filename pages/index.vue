@@ -92,13 +92,14 @@
 <script>
 export default {
   name: "index",
-  async asyncData({ $api, env, route }) {
-    const imgUrl = env.VUE_APP_IMG_URL;
-    // SEO
-    const seoRes = await $api.webSEO.load({ WebPath: route.name });
-    const seoList = seoRes.data.result || {};
+  async asyncData({ $api, route }) {
+    if (process.server) {
+      // SEO
+      const seoRes = await $api.webSEO.load({ WebPath: route.name });
+      const seoList = seoRes.data.result || {};
 
-    return { imgUrl, seoList };
+      return { seoList };
+    }
   },
   head() {
     return {
@@ -106,14 +107,15 @@ export default {
       meta: [
         { name: "title", content: `${process.env.VUE_APP_WEBNAME}｜${this.$t("menu.index")}` },
         { hid: "og:title", property: "og:title", content: `${process.env.VUE_APP_WEBNAME}｜${this.$t("menu.index")}` },
-        { name: "keywords", content: this.seoList.seoKeyword || "" },
-        { hid: "description", name: "description", content: this.seoList.seoDescription || "" },
-        { hid: "og:description", property: "og:description", content: this.seoList.seoDescription || "" },
+        { name: "keywords", content: this.seoList?.seoKeyword || "" },
+        { hid: "description", name: "description", content: this.seoList?.seoDescription || "" },
+        { hid: "og:description", property: "og:description", content: this.seoList?.seoDescription || "" },
       ],
     };
   },
   data() {
     return {
+      imgUrl: process.env.VUE_APP_IMG_URL,
       list: [],
       hotProductList: [],
 

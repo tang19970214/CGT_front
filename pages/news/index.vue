@@ -22,27 +22,35 @@
 <script>
 export default {
   name: "news-index",
-  async asyncData({ app, $api, env }) {
-    const imgUrl = env.VUE_APP_IMG_URL;
-    const listQuery = {
-      LangCode: app.$cookies.get("lang") || "zh-tw",
-      page: 1,
-      limit: 10,
+  data() {
+    return {
+      imgUrl: process.env.VUE_APP_IMG_URL,
+      list: [],
     };
-
-    const res = await $api.news.load(listQuery);
-    const { code, data } = res.data;
-    if (code !== 200) return;
-
-    return { imgUrl, listQuery, list: data };
   },
   methods: {
+    async getList() {
+      const params = {
+        LangCode: this.$cookies.get("lang") || "zh-tw",
+        page: 1,
+        limit: 999,
+      };
+      await this.api.news.load(params).then((res) => {
+        const { code, data } = res.data;
+        if (code === 200) {
+          this.list = data;
+        }
+      });
+    },
     goNewsInfo(item) {
       this.$router.push({
         name: "news-id",
         params: { id: item.id },
       });
     },
+  },
+  mounted() {
+    this.getList();
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full">
+  <section class="w-full md:px-5">
     <div class="w-full p-2 md:p-4 rounded-lg bg-white shadow-lg">
       <!-- head -->
       <div class="w-full p-2">
@@ -23,13 +23,24 @@
 <script>
 export default {
   name: "news-id",
-  async asyncData({ $api, params, env }) {
-    const imgUrl = env.VUE_APP_IMG_URL;
-    const res = await $api.news.get({ id: params.id });
-    const { code, result } = res.data;
-    if (code !== 200) return;
-
-    return { imgUrl, list: result };
+  data() {
+    return {
+      imgUrl: process.env.VUE_APP_IMG_URL,
+      list: {},
+    };
+  },
+  methods: {
+    async getList(id) {
+      await this.api.news.get({ id }).then((res) => {
+        const { code, result } = res.data;
+        if (code === 200) {
+          this.list = result;
+        }
+      });
+    },
+  },
+  mounted() {
+    if (this.$route.params?.id) this.getList(this.$route.params.id);
   },
 };
 </script>

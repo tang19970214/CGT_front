@@ -1,5 +1,5 @@
 <template>
-  <section class="px-3 md:px-6 lg:px-0">
+  <section class="px-3 md:px-6">
     <div class="w-full border border-[#d9d9d9] rounded bg-white p-5 shadow-md">
       <div class="pb-2 border-b border-[#d9d9d9]">
         <strong class="text-lg tracking-widest">{{ $t("contact.pageTitle") }}</strong>
@@ -170,11 +170,13 @@ const formTemplate = {
 export default {
   name: "contact",
   async asyncData({ $api, route }) {
-    // SEO
-    const seoRes = await $api.webSEO.load({ WebPath: route.name });
-    const seoList = seoRes.data.result || {};
+    if (process.server) {
+      // SEO
+      const seoRes = await $api.webSEO.load({ WebPath: route.name });
+      const seoList = seoRes.data.result || {};
 
-    return { seoList };
+      return { seoList };
+    }
   },
   head() {
     return {
@@ -182,9 +184,9 @@ export default {
       meta: [
         { name: "title", content: `${process.env.VUE_APP_WEBNAME}｜${this.$t("menu.contact")}` },
         { hid: "og:title", property: "og:title", content: `${process.env.VUE_APP_WEBNAME}｜${this.$t("menu.contact")}` },
-        { name: "keywords", content: this.seoList.seoKeyword || "" },
-        { hid: "description", name: "description", content: this.seoList.seoDescription || "" },
-        { hid: "og:description", property: "og:description", content: this.seoList.seoDescription || "" },
+        { name: "keywords", content: this.seoList?.seoKeyword || "" },
+        { hid: "description", name: "description", content: this.seoList?.seoDescription || "" },
+        { hid: "og:description", property: "og:description", content: this.seoList?.seoDescription || "" },
       ],
     };
   },

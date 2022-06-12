@@ -46,11 +46,13 @@
 export default {
   name: "skill",
   async asyncData({ $api, route }) {
-    // SEO
-    const seoRes = await $api.webSEO.load({ WebPath: route.name });
-    const seoList = seoRes.data.result || {};
+    if (process.server) {
+      // SEO
+      const seoRes = await $api.webSEO.load({ WebPath: route.name });
+      const seoList = seoRes.data.result || {};
 
-    return { seoList };
+      return { seoList };
+    }
   },
   head() {
     return {
@@ -58,9 +60,9 @@ export default {
       meta: [
         { name: "title", content: `${process.env.VUE_APP_WEBNAME}｜${this.$t("menu.skill")}` },
         { hid: "og:title", property: "og:title", content: `${process.env.VUE_APP_WEBNAME}｜${this.$t("menu.skill")}` },
-        { name: "keywords", content: this.seoList.seoKeyword || "" },
-        { hid: "description", name: "description", content: this.seoList.seoDescription || "" },
-        { hid: "og:description", property: "og:description", content: this.seoList.seoDescription || "" },
+        { name: "keywords", content: this.seoList?.seoKeyword || "" },
+        { hid: "description", name: "description", content: this.seoList?.seoDescription || "" },
+        { hid: "og:description", property: "og:description", content: this.seoList?.seoDescription || "" },
       ],
     };
   },

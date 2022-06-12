@@ -319,15 +319,26 @@ export default {
       this.settings.slidesToShow = 3;
       this.settings.slidesToScroll = 3;
     }
+
+    const getTableClass = document.querySelector(".prodRule > table > tbody > tr > td:first-child");
+
+    const getLang = this.$cookies.get("lang") || "zh-tw";
+    if (getLang === "en") {
+      getTableClass.style.minWidth = "160px";
+      getTableClass.style.maxWidth = "160px";
+    } else {
+      getTableClass.style.minWidth = "80px";
+      getTableClass.style.maxWidth = "80px";
+    }
   },
 };
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .prodRule > table > tbody > tr > td:first-child {
-    min-width: 80px !important;
-    max-width: 80px !important;
-  }
-}
+// ::v-deep {
+//   .prodRule > table > tbody > tr > td:first-child {
+//     min-width: 80px !important;
+//     max-width: 80px !important;
+//   }
+// }
 </style>
