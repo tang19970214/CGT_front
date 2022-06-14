@@ -5,13 +5,13 @@
         <div class="w-full">
           <img v-if="item.files[0]" :src="`${imgUrl}/${item.files[0].filePath}`" :alt="item.title" :title="item.title" width="100%" />
           <transition name="fade">
-            <div class="w-full h-full bg-white bg-opacity-70 absolute top-0 left-0 z-10 flex items-center justify-center text-center" v-if="item.openHover">
-              <strong class="lg:text-xl text-gray-700">{{ item.name }}</strong>
+            <div class="w-full h-full bg-white bg-opacity-70 absolute top-0 left-0 z-10 flex flex-col items-center justify-center text-center" v-if="item.openHover">
+              <strong class="lg:text-xl text-gray-700" v-for="(txt, idx) in splitStr(item.name)" :key="idx">{{ txt }}</strong>
             </div>
           </transition>
         </div>
         <div class="w-full bg-white p-3">
-          <p>{{ item.name }}</p>
+          <p v-for="(txt, $idx) in splitStr(item.name)" :key="$idx">{{ txt }}</p>
         </div>
       </div>
     </div>
@@ -45,6 +45,14 @@ export default {
     $route(to) {
       this.listQuery.CategoryId = to.query?.id || "";
       this.getList();
+    },
+  },
+  computed: {
+    splitStr() {
+      return (str) => {
+        const strArr = str?.split(" ") || [str];
+        return strArr.reverse();
+      };
     },
   },
   methods: {

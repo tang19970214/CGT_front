@@ -2,13 +2,13 @@
   <section class="w-full flex flex-col">
     <div class="w-full md:border border-[#d9d9d9] bg-white shadow-md p-4">
       <div class="w-full grid grid-cols-12 gap-5 pb-16">
-        <div class="col-span-12 md:col-span-7">
+        <div class="col-span-12 lg:col-span-5">
           <img v-if="list.files[0]" width="100%" class="object-cover pointer-events-none" :src="`${imgUrl}/${list.files[0].filePath}`" :alt="list.files[0].fileName" />
         </div>
-        <div class="col-span-12 md:col-span-5 w-full flex flex-col justify-between">
+        <div class="col-span-12 lg:col-span-7 w-full flex flex-col justify-between">
           <div class="w-full flex flex-col">
             <div class="w-full flex flex-col gap-2 pb-4 md:pb-7 border-b border-[#828282]">
-              <strong class="text-lg">{{ list.name }}</strong>
+              <strong class="text-xl md:text-2xl" v-for="(txt, idx) in splitStr(list.name)" :key="idx">{{ txt }}</strong>
               <span class="text-gray-500">{{ $t("product.productId") }}：{{ list.productCode }}</span>
             </div>
 
@@ -39,7 +39,7 @@
 
     <!-- more product -->
     <div class="w-full mt-7 py-5 px-7 md:px-9">
-      <VueSlickCarousel class="" v-bind="settings">
+      <VueSlickCarousel v-bind="settings">
         <div v-for="item in productList" :key="item.id">
           <img :class="{ 'cursor-not-allowed': $route.params.id === item.id }" class="mx-auto p-1 bg-white cursor-pointer hover:bg-white/70" width="95%" :src="`${imgUrl}/${item.files[0].filePath}`" :alt="item.title" @click="goProduct(item.id)" />
         </div>
@@ -185,7 +185,7 @@ export default {
       });
 
       getProduct = data.filter((i) => i.id === params.id);
-      productList = data;
+      productList = data.filter((i) => i.id !== params.id);
     }
 
     return { imgUrl, listQuery, list: getProduct[0], productList, total: count };
@@ -226,6 +226,13 @@ export default {
       btnLoading: false,
       temp: JSON.parse(JSON.stringify(formTemplate)),
     };
+  },
+  computed: {
+    splitStr() {
+      return (str) => {
+        return str?.split(" ") || [str];
+      };
+    },
   },
   methods: {
     getScreenWidth() {

@@ -1,7 +1,7 @@
 <template>
-  <section class="relative md:px-6 lg:px-2 grid grid-cols-12 gap-2">
-    <div class="hidden md:block col-span-4 lg:col-span-2">
-      <div class="w-full h-full px-1">
+  <section class="max-w-[1080px] relative md:px-6 lg:px-2 md:pt-6 flex gap-4">
+    <div class="hidden md:block min-w-[200px] max-w-[200px]">
+      <div class="w-full h-full">
         <ul class="relative flex flex-col py-2 text-lg bg-white">
           <li class="relative p-3 bg-white cursor-pointer transition duration-300 hover:shadow-md hover:bg-[#EFEFEF]" v-for="item in list" :key="item.id" @click="setActive(item.dtValue)">
             <a class="flex items-center justify-between tracking-wider hover:text-primary transition duration-300 ease-in-out" :class="{ 'text-primary font-bold': defaultMenu === item.dtValue, 'text-gray-500': defaultMenu !== item.dtValue }">
@@ -11,7 +11,7 @@
         </ul>
       </div>
     </div>
-    <div class="col-span-12 md:col-span-8 lg:col-span-10">
+    <div class="w-full md:w-[calc(100%-220px)] m-auto p-3 md:p-0">
       <Nuxt-child :defaultMenu="defaultMenu" />
     </div>
   </section>

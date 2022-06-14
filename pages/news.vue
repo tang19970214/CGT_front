@@ -1,5 +1,5 @@
 <template>
-  <section class="px-3 md:px-6">
+  <section class="px-3 md:px-6 pt-3 md:pt-6">
     <Nuxt-child />
   </section>
 </template>
