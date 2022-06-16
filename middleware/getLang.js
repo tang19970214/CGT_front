@@ -7,7 +7,6 @@ export default async({ $api, store }) => {
     const res = await $api.language.load(listQuery);
     const { code, data } = res.data;
     if (code !== 200) return;
-
     store.dispatch('GetLoales', data);
 
     const getLangCodeArr = data.map((i) => i.langCode);

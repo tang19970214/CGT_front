@@ -5,7 +5,7 @@
         <ul class="relative flex flex-col py-2 text-lg bg-white">
           <li class="relative p-3 bg-white cursor-pointer transition duration-300 hover:shadow-md hover:bg-[#EFEFEF]" v-for="item in list" :key="item.id" @click="setActive(item.dtValue)">
             <a class="flex items-center justify-between tracking-wider hover:text-primary transition duration-300 ease-in-out" :class="{ 'text-primary font-bold': defaultMenu === item.dtValue, 'text-gray-500': defaultMenu !== item.dtValue }">
-              <span>{{ item.name }}</span>
+              <span>{{ item.i18nName || item.name }}</span>
             </a>
           </li>
         </ul>
@@ -51,6 +51,7 @@ export default {
           dtCode: "",
           dtValue: "",
           sort: 0,
+          i18nName: this.$t("product.menu.all"),
         },
       ],
     };
@@ -71,8 +72,23 @@ export default {
       this.api.category.load(params).then((res) => {
         const { code, data } = res.data;
         if (code === 200) {
+          data.map((i) => {
+            let i18nName = "";
+            switch (i.dtValue) {
+              case "MJV":
+                i18nName = this.$t("product.menu.mjv");
+                break;
+              case "MJH":
+                i18nName = this.$t("product.menu.mjh");
+                break;
+              case "other":
+                i18nName = this.$t("product.menu.other");
+                break;
+            }
+            i.i18nName = i18nName;
+            return i;
+          });
           this.list.push(...data);
-          console.log(this.list);
         }
       });
     },

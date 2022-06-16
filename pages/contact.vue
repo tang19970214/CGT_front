@@ -31,7 +31,6 @@
               <div class="w-auto flex flex-col gap-1.5">
                 <p>{{ $t("field.address") }}</p>
                 <a class="hover:underline text-[#808080]" href="https://goo.gl/maps/fgJDF1d4FpDEf7L98" target="_blank">{{ $t("about.address") }}</a>
-                <!-- <p class="text-[#808080]">{{ $t("about.address") }}</p> -->
               </div>
             </div>
           </div>

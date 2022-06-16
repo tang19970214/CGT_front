@@ -218,8 +218,8 @@ export default {
 
       defaultTab: 1,
       tabList: [
-        { id: 1, label: "商品規格" },
-        { id: 2, label: "商品詳情" },
+        { id: 1, label: this.$t("product.productRule") }, // "商品規格"
+        { id: 2, label: this.$t("product.productInfo") }, // "商品詳情"
       ],
 
       openModal: false,
@@ -340,12 +340,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-// ::v-deep {
-//   .prodRule > table > tbody > tr > td:first-child {
-//     min-width: 80px !important;
-//     max-width: 80px !important;
-//   }
-// }
-</style>

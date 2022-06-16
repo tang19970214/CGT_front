@@ -22,20 +22,7 @@ export default ({ $axios }, inject) => {
       return response
     }
   }, (errorRes) => {
-    switch (errorRes.response.status) {
-      case 401:
-        console.log('401 error')
-        break
-      case 404:
-        console.log('404 error')
-        break
-      case 500:
-        console.log('500 error')
-        break
-      default:
-        console.log(errorRes.response.status);
-        break
-    }
+    console.error(errorRes.response.status);
   })
 
   inject('request', service)
