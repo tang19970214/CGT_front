@@ -57,6 +57,8 @@ export default {
     '~/plugins/api',
     '~/plugins/i18n.js',
 
+    { src: '~/plugins/ga.js', mode: 'client' },
+
     { src: '~/plugins/sweet-alert', ssr: false },
     { src: '~/plugins/vee-validate', ssr: false },
     { src: '~/plugins/font-awesome', ssr: false },

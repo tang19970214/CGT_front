@@ -12,9 +12,6 @@
         <ul class="flex items-center gap-4">
           <li class="text-lg lg:text-xl text-primary border-b-2 transition duration-300 hover:border-primary" :class="{ 'font-bold border-primary': checkRoute(item.value), 'cursor-pointer border-transparent': !checkRoute(item.value) }" v-for="item in menuList" :key="item.id" @click="goPath(item.value)">{{ item.label }}</li>
           <li class="text-primary text-lg lg:text-xl">
-            <!-- <select class="border-b border-primary bg-transparent font-bold focus:outline-none" v-model="langValue" @change="changeLang(langValue)">
-              <option :value="item.langCode" v-for="(item, idx) in locales" :key="idx">{{ item.langName }}</option>
-            </select> -->
             <div class="flex justify-center dropdown relative">
               <fa class="cursor-pointer transition duration-300 hover:scale-110" :icon="['fas', 'globe']" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" />
               <ul class="dropdown-menu min-w-max absolute bg-white text-base z-50 float-left py-1 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none" aria-labelledby="dropdownMenuButton1">
@@ -33,11 +30,11 @@
       <div v-if="openPhoneMenu" class="fixed z-[20] top-0 left-0 bg-white bg-opacity-95 w-screen h-screen">
         <div class="w-full h-full flex items-center justify-center">
           <ul class="text-xl tracking-wider text-gray-700 flex flex-col gap-2">
-            <li :class="{ 'text-primary font-bold': checkRoute('/') }" @click="goPath('/')">首頁</li>
+            <li :class="{ 'text-primary font-bold': checkRoute('/') }" @click="goPath('/')">{{ $t("menu.index") || "首頁" }}</li>
             <li v-for="item in menuList" :key="item.id" @click="goPath(item.value)">
               <span :class="{ 'text-primary font-bold': checkRoute(item.value) }">{{ item.label }}</span>
               <ul class="ml-4 text-base flex flex-col gap-1" v-if="item.value === '/product'">
-                <li :class="{ 'text-primary font-bold': checkProduct(item.dtValue) }" v-for="item in productCategory" :key="item.id" @click="goProductPath(item.dtValue)">{{ item.name }}</li>
+                <li :class="{ 'text-primary font-bold': checkProduct(item.dtValue) }" v-for="item in setLangName(productCategory)" :key="item.id" @click="goProductPath(item.dtValue)">{{ item.name }}</li>
               </ul>
             </li>
             <li>
@@ -74,7 +71,6 @@ export default {
         { id: 4, label: this.$t("menu.news"), value: "/news" }, // 最新消息
         { id: 5, label: this.$t("menu.contact"), value: "/contact" }, // 聯絡我們
       ],
-      // langValue: Cookies.get("lang") || "zh-tw",
 
       openPhoneMenu: false,
     };
@@ -104,6 +100,31 @@ export default {
       return (val) => {
         const getLang = Cookies.get("lang") || "zh-tw";
         return getLang === val;
+      };
+    },
+    setLangName() {
+      return (arr) => {
+        const newArr = JSON.parse(JSON.stringify(arr));
+        newArr?.map((i) => {
+          let i18nName = "";
+          switch (i.dtValue) {
+            case "MJV":
+              i18nName = this.$t("product.menu.mjv");
+              break;
+            case "MJH":
+              i18nName = this.$t("product.menu.mjh");
+              break;
+            case "other":
+              i18nName = this.$t("product.menu.other");
+              break;
+            default:
+              i18nName = this.$t("product.menu.all");
+              break;
+          }
+          i.name = i18nName || i.name;
+          return i;
+        });
+        return newArr;
       };
     },
   },

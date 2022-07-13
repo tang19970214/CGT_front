@@ -6,7 +6,7 @@
         <img class="w-28 lg:w-32" src="~/static/images/logo_footer.png" alt="" />
 
         <div class="flex flex-col items-center md:items-start text-center gap-0.5">
-          <h1 class="text-xl lg:text-2xl font-bold text-[#2F80ED]">鉅鴻科技 CGT TECHNOLOGY</h1>
+          <h1 class="text-xl lg:text-2xl font-bold text-[#2F80ED]">{{ $t("about.company") }}</h1>
           <p class="text-sm md:text-base lg:text-lg text-[#808080]">{{ $t("about.desc") }}</p>
         </div>
       </div>

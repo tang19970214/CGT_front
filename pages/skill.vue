@@ -1,12 +1,12 @@
 <template>
   <section class="max-w-[1080px] px-3 md:px-6 lg:px-0">
     <div class="w-full grid grid-cols-1 gap-3">
-      <img width="100%" :src="require(`~/static/images/skill${i}.png`)" :alt="`技術應用${i}`" v-for="i in 3" :key="i" />
+      <img width="100%" :src="require(`~/static/images/skill${i}_${getLang}.png`)" :alt="`技術應用${i}`" v-for="i in 3" :key="i" />
     </div>
 
     <div class="w-full grid grid-cols-1 gap-3 mt-3">
       <div class="relative w-full mx-auto">
-        <img width="100%" src="~/static/images/youtubeEx.jpg" alt="【CGT 真空式脫泡攪拌機】特點介紹" />
+        <img width="100%" :src="require(`~/static/images/youtubeEx_${getLang}.jpg`)" alt="【CGT 真空式脫泡攪拌機】特點介紹" />
         <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
           <div class="min-w-[80px] max-w-[80px] min-h-[80px] max-h-[80px] bg-[#2F80ED] rounded-full flex items-center justify-center cursor-pointer transition duration-300 hover:bg-opacity-80" @click="openVideoModal('https://www.youtube.com/embed/vzVJPMgCabk', '【CGT 真空式脫泡攪拌機】特點介紹')">
             <fa class="text-white text-5xl ml-1.5" :icon="['fas', 'play']" />
@@ -45,7 +45,7 @@
 <script>
 export default {
   name: "skill",
-  async asyncData({ $api, route }) {
+  async asyncData({ app, $api, route }) {
     if (process.server) {
       // SEO
       const seoRes = await $api.webSEO.load({ WebPath: route.name });
@@ -68,6 +68,7 @@ export default {
   },
   data() {
     return {
+      getLang: this.$cookies.get("lang") || "zh-tw",
       // modal
       videoModalVisible: false,
       videoUrl: "",

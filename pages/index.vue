@@ -3,7 +3,7 @@
     <Banner :carouselArr="list" />
 
     <div class="w-full">
-      <img width="100%" class="md:w-11/12 max-w-[1080px] mx-auto" src="~/static/images/introduce.png" alt="運用範疇" />
+      <img width="100%" class="md:w-11/12 max-w-[1080px] mx-auto" :src="require(`~/static/images/introduce_${getLang}.png`)" alt="運用範疇" />
     </div>
 
     <!-- video1 -->
@@ -23,7 +23,7 @@
         <!-- video -->
         <div class="w-full">
           <div class="relative w-full mx-auto">
-            <img width="100%" src="~/static/images/youtubeEx.jpg" alt="" />
+            <img width="100%" :src="require(`~/static/images/youtubeEx_${getLang}.jpg`)" alt="" />
             <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
               <div class="min-w-[56px] max-w-[56px] min-h-[56px] max-h-[56px] bg-[#2F80ED] rounded-full flex items-center justify-center cursor-pointer transition duration-300 hover:bg-opacity-80" @click="openVideoModal('https://www.youtube.com/embed/vzVJPMgCabk', '【CGT 真空式脫泡攪拌機】特點介紹')">
                 <fa class="text-white text-2xl" :icon="['fas', 'play']" />
@@ -92,7 +92,7 @@
 <script>
 export default {
   name: "index",
-  async asyncData({ $api, route }) {
+  async asyncData({ app, $api, route }) {
     if (process.server) {
       // SEO
       const seoRes = await $api.webSEO.load({ WebPath: route.name });
@@ -115,6 +115,8 @@ export default {
   },
   data() {
     return {
+      getLang: this.$cookies.get("lang") || "zh-tw",
+
       imgUrl: process.env.VUE_APP_IMG_URL,
       list: [],
       hotProductList: [],
