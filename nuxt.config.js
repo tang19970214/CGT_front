@@ -1,3 +1,5 @@
+import sitemap from './config/sitemap.js';
+
 export default {
   server: {
     port: 8080
@@ -82,8 +84,10 @@ export default {
 
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/sitemap',
     'cookie-universal-nuxt'
   ],
+  sitemap,
 
   axios: {
     baseURL: '/',
