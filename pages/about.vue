@@ -3,8 +3,6 @@
     <div class="w-full md:max-w-[85%] xl:max-w-[1080px] mx-auto border border-[#d9d9d9] rounded bg-white bg-opacity-80 p-4 md:p-8 shadow-md">
       <!-- 鉅鴻科技 -->
       <div class="w-auto flex flex-col md:flex-row items-center gap-5 px-4 md:px-0 mt-4 mb-8 lg:mb-12">
-        <img class="w-28 lg:w-32" src="~/static/images/logo_footer.png" alt="" />
-
         <div class="flex flex-col items-center md:items-start text-center gap-0.5">
           <h1 class="text-xl lg:text-2xl font-bold text-[#2F80ED]">{{ $t("about.company") }}</h1>
           <p class="text-sm md:text-base lg:text-lg text-[#808080]">{{ $t("about.desc") }}</p>

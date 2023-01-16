@@ -11,7 +11,6 @@
       <div class="w-full max-w-[1080px] mx-auto flex flex-col lg:flex-row items-center justify-center gap-5">
         <!-- introduce -->
         <div class="w-full flex flex-col gap-2 text-[#15619E]">
-          <h1 class="hidden lg:block text-5xl">CGT</h1>
           <h2 class="text-2xl">{{ $t("index.video1.title") }}</h2>
           <ul class="mt-1 list-decimal list-inside text-[#4F4F4F] flex flex-col gap-2">
             <li>{{ $t("index.video1.content1") }}</li>
@@ -39,7 +38,6 @@
       <div class="w-full max-w-[1080px] mx-auto flex flex-col lg:flex-row-reverse items-center justify-center gap-5">
         <!-- introduce -->
         <div class="w-full flex flex-col gap-1.5 text-white">
-          <h1 class="hidden lg:block text-5xl">CGT</h1>
           <h2 class="text-2xl">{{ $t("index.video2.title") }}</h2>
           <ul class="mt-1 list-none flex flex-col gap-1">
             <li>{{ $t("index.video2.content1") }}</li>

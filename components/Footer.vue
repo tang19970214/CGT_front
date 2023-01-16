@@ -3,7 +3,7 @@
     <div class="w-full h-full max-w-[1080px] mx-auto">
       <div class="w-full h-full flex flex-col gap-2 items-center justify-center text-white">
         <div class="w-full flex flex-col items-start md:flex-row md:items-center justify-center gap-5 lg:gap-32">
-          <img class="h-12" src="~/static/images/CGT_logo.png" alt="鉅鴻科技" />
+          <img class="h-12 md:h-16" src="~/static/images/CGT_LOGO_footer.png" alt="鉅鴻科技" />
 
           <div class="flex flex-col gap-2 lg:gap-1">
             <div class="flex items-center">
