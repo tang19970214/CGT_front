@@ -32,7 +32,7 @@
       </div>
     </div>
 
-    <div class="w-full grid grid-cols-1 gap-3 mt-8">
+    <div class="w-full grid grid-cols-1 gap-3 mt-8 lg:mt-16">
       <img v-for="i in 3" :key="i" width="100%" :src="require(`~/static/images/skill${i}_${getLang}.png`)" :alt="`技術應用${i}`" />
     </div>
 
