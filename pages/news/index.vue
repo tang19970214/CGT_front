@@ -38,7 +38,7 @@ export default {
       await this.api.news.load(params).then((res) => {
         const { code, data } = res.data;
         if (code === 200) {
-          this.list = data;
+          this.list = data?.reverse();
         }
       });
     },
