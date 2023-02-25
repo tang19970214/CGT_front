@@ -80,7 +80,7 @@ export default {
       this.$router.push({
         name: "product-id",
         params: { id: item.id },
-        query: { category: item.categoryId },
+        query: { category: item.categoryId, model: item.productCode },
       });
     },
   },

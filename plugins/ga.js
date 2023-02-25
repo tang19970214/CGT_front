@@ -1,5 +1,4 @@
 if (process.client && process.env.NODE_ENV === 'prod') {
-  ;
   (function (i, s, o, g, r, a, m) {
     i.GoogleAnalyticsObject = r;
     (i[r] =
@@ -23,8 +22,9 @@ if (process.client && process.env.NODE_ENV === 'prod') {
   ga('create', 'UA-226196812-1', 'auto')
 }
 
-export default ({ app: { router }, store }) => {
-  router.afterEach((to, from) => {
+export default ({ app: { router } }) => {
+  if (process.client) return;
+  router.afterEach((to) => {
     ga('set', 'page', to.fullPath)
     ga('send', 'pageview')
   })

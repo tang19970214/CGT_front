@@ -2,12 +2,12 @@
   <section class="md:pt-0 pb-0 bg-[#F3FFFE]">
     <Banner :carouselArr="list" />
 
-    <div class="w-full">
+    <div data-aos="fade-up" data-aos-duration="1500" class="w-full">
       <img width="100%" class="md:w-11/12 max-w-[1080px] mx-auto" :src="require(`~/static/images/introduce_${getLang}.png`)" alt="運用範疇" />
     </div>
 
     <!-- video1 -->
-    <div class="w-full p-4 md:p-10 box-border bg-[url('~/static/images/indexBg.png')] bg-cover bg-no-repeat">
+    <div data-aos="fade-up" data-aos-duration="1500" class="w-full p-4 md:p-10 box-border bg-[url('~/static/images/indexBg.png')] bg-cover bg-no-repeat">
       <div class="w-full max-w-[1080px] mx-auto flex flex-col lg:flex-row items-center justify-center gap-5">
         <!-- introduce -->
         <div class="w-full flex flex-col gap-2 text-[#15619E]">
@@ -34,7 +34,7 @@
     </div>
 
     <!-- video2 -->
-    <div class="w-full p-4 md:p-10 box-border bg-[url('~/static/images/indexBg1.png')] bg-cover bg-no-repeat">
+    <div data-aos="fade-up" data-aos-duration="1000" class="w-full p-4 md:p-10 box-border bg-[url('~/static/images/indexBg1.png')] bg-cover bg-no-repeat">
       <div class="w-full max-w-[1080px] mx-auto flex flex-col lg:flex-row-reverse items-center justify-center gap-5">
         <!-- introduce -->
         <div class="w-full flex flex-col gap-1.5 text-white">
@@ -64,7 +64,7 @@
     </div>
 
     <!-- hot product -->
-    <div class="w-full p-4 md:p-10 box-border bg-[url('~/static/images/indexBg2.png')] bg-cover bg-no-repeat">
+    <div data-aos="fade-up" data-aos-duration="1000" class="w-full p-4 md:p-10 box-border bg-[url('~/static/images/indexBg2.png')] bg-cover bg-no-repeat">
       <div class="w-full text-center mb-10">
         <strong class="text-white text-2xl">{{ $t("index.ourProduct") }}</strong>
       </div>

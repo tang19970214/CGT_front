@@ -16,7 +16,7 @@
               <fa class="cursor-pointer transition duration-300 hover:scale-110" :icon="['fas', 'globe']" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" />
               <ul class="dropdown-menu min-w-max absolute bg-white text-base z-50 float-left py-1 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none" aria-labelledby="dropdownMenuButton1">
                 <li class="py-1 px-4 transition duration-300 hover:bg-primary hover:bg-opacity-10" :class="{ 'text-primary font-bold bg-primary bg-opacity-10': checkLocale(item.langCode), 'cursor-pointer': !checkLocale(item.langCode) }" v-for="(item, idx) in locales" :key="idx" @click="changeLang(item.langCode)">
-                  <a class="dropdown-item text-sm whitespace-nowrap">{{ item.langName }}</a>
+                  <p class="dropdown-item text-sm whitespace-nowrap">{{ item.langName }}</p>
                 </li>
               </ul>
             </div>
@@ -45,7 +45,7 @@
               <!-- 語言 -->
               <ul class="collapse" id="langCollapse">
                 <li class="px-2 transition duration-300 hover:bg-primary hover:bg-opacity-10" :class="{ 'text-primary font-bold bg-primary bg-opacity-10': checkLocale(item.langCode), 'cursor-pointer': !checkLocale(item.langCode) }" v-for="(item, idx) in locales" :key="idx" @click="changeLang(item.langCode)">
-                  <a class="dropdown-item text-sm whitespace-nowrap">{{ item.langName }}</a>
+                  <p class="dropdown-item text-sm whitespace-nowrap">{{ item.langName }}</p>
                 </li>
               </ul>
             </li>

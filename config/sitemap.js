@@ -24,13 +24,13 @@ const sitemap = {
         lastmod: new Date(),
       },
       {
-        url: '/product',
+        url: '/skill',
         changefreq: 'daily',
         priority: 1,
         lastmod: new Date(),
       },
       {
-        url: '/skill',
+        url: '/contact',
         changefreq: 'daily',
         priority: 1,
         lastmod: new Date(),
@@ -42,7 +42,7 @@ const sitemap = {
         lastmod: new Date(),
       },
       {
-        url: '/contact',
+        url: '/product',
         changefreq: 'daily',
         priority: 1,
         lastmod: new Date(),

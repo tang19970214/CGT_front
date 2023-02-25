@@ -4,9 +4,9 @@
       <div class="w-full h-full">
         <ul class="relative flex flex-col py-2 text-lg bg-white">
           <li class="relative p-3 bg-white cursor-pointer transition duration-300 hover:shadow-md hover:bg-[#EFEFEF]" v-for="item in list" :key="item.id" @click="setActive(item.dtValue)">
-            <a class="flex items-center justify-between tracking-wider hover:text-primary transition duration-300 ease-in-out" :class="{ 'text-primary font-bold': defaultMenu === item.dtValue, 'text-gray-500': defaultMenu !== item.dtValue }">
+            <p class="flex items-center justify-between tracking-wider hover:text-primary transition duration-300 ease-in-out" :class="{ 'text-primary font-bold': defaultMenu === item.dtValue, 'text-gray-500': defaultMenu !== item.dtValue }">
               <span>{{ item.i18nName || item.name }}</span>
-            </a>
+            </p>
           </li>
         </ul>
       </div>

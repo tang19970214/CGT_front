@@ -29,11 +29,11 @@
       </div>
       <!-- tab1 content -->
       <div class="w-full pt-5" v-if="defaultTab === 1">
-        <img v-if="list.files[1]" class="mx-auto w-4/5" :src="`${imgUrl}/${list.files[1].filePath}`" :alt="list.files[1].fileName" />
+        <div v-html="list.contents"></div>
       </div>
       <!-- tab2 content -->
       <div class="w-full pt-5" v-if="defaultTab === 2">
-        <div v-html="list.contents"></div>
+        <img v-if="list.files[1]" class="mx-auto w-4/5" :src="`${imgUrl}/${list.files[1].filePath}`" :alt="list.files[1].fileName" />
       </div>
     </div>
 
@@ -41,7 +41,7 @@
     <div class="w-full mt-7 py-5 px-7 md:px-9">
       <VueSlickCarousel v-bind="settings">
         <div v-for="item in productList" :key="item.id">
-          <img :class="{ 'cursor-not-allowed': $route.params.id === item.id }" class="mx-auto p-1 bg-white cursor-pointer hover:bg-white/70" width="95%" :src="`${imgUrl}/${item.files[0].filePath}`" :alt="item.title" @click="goProduct(item.id)" />
+          <img :class="{ 'cursor-not-allowed': $route.params.id === item.id }" class="mx-auto p-1 bg-white cursor-pointer hover:bg-white/70" width="95%" :src="`${imgUrl}/${item.files[0].filePath}`" :alt="item.title" @click="goProduct(item)" />
         </div>
       </VueSlickCarousel>
     </div>
@@ -218,8 +218,8 @@ export default {
 
       defaultTab: 1,
       tabList: [
-        { id: 1, label: this.$t("product.productRule") }, // "商品規格"
-        { id: 2, label: this.$t("product.productInfo") }, // "商品詳情"
+        { id: 1, label: this.$t("product.productInfo") }, // "商品詳情"
+        { id: 2, label: this.$t("product.productRule") }, // "商品規格"
       ],
 
       openModal: false,
@@ -307,12 +307,12 @@ export default {
       }
     },
 
-    goProduct(id) {
-      if (this.$route.params.id === id) return;
+    goProduct(item) {
+      if (this.$route.params.id === item.id) return;
       this.$router.push({
         name: "product-id",
-        params: { id },
-        query: { category: this.$route.query.category },
+        params: { id: item.id },
+        query: { category: this.$route.query.category, model: item.productCode },
       });
     },
   },
