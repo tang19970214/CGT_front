@@ -1,6 +1,7 @@
 <template>
   <section class="px-3 md:px-6 lg:px-0 !py-4 bg-[url('~/static/images/about.jpeg')] bg-cover flex items-center">
-    <div class="w-full md:max-w-[85%] xl:max-w-[1080px] mx-auto border border-[#d9d9d9] rounded bg-white bg-opacity-80 p-4 md:p-8 shadow-md">
+    <div
+      class="w-full md:max-w-[85%] xl:max-w-[1080px] mx-auto border border-[#d9d9d9] rounded bg-white bg-opacity-80 p-4 md:p-8 shadow-md">
       <!-- 鉅鴻科技 -->
       <div class="w-auto flex flex-col md:flex-row items-center gap-5 px-4 md:px-0 mt-4 mb-8 lg:mb-12">
         <div class="flex flex-col items-center md:items-start text-center gap-0.5">
@@ -10,12 +11,13 @@
       </div>
 
       <!-- 專業研發｜技術領先｜以客為尊｜品質保證 -->
-      <div class="w-full">
-        <strong class="text-lg lg:text-xl text-[#333333]">{{ $t("about.title") }}</strong>
+      <div class="w-full flex flex-col gap-7">
+        <div v-for="i in 3" class="w-full">
+          <strong class="text-lg lg:text-xl text-[#333333]">{{ $t(`about.block${i}.title`) }}</strong>
 
-        <div class="w-full flex flex-col gap-5 text-left mt-4 lg:text-lg tracking-wider">
-          <p>{{ $t("about.content1") }}</p>
-          <p>{{ $t("about.content2") }}</p>
+          <div class="w-full flex flex-col gap-1 text-left mt-4 lg:text-lg tracking-wider">
+            <p v-for="text in $t(`about.block${i}.content`)">{{ text }}</p>
+          </div>
         </div>
       </div>
     </div>
