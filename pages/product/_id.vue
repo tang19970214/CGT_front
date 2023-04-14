@@ -3,7 +3,8 @@
     <div class="w-full md:border border-[#d9d9d9] bg-white shadow-md p-4">
       <div class="w-full grid grid-cols-12 gap-5 pb-16">
         <div class="col-span-12 lg:col-span-5">
-          <img v-if="list.files[0]" width="100%" class="object-cover pointer-events-none" :src="`${imgUrl}/${list.files[0].filePath}`" :alt="list.files[0].fileName" />
+          <img v-if="list.files[0]" width="100%" class="object-cover pointer-events-none"
+            :src="`${imgUrl}/${list.files[0].filePath}`" :alt="list.files[0].fileName" />
         </div>
         <div class="col-span-12 lg:col-span-7 w-full flex flex-col justify-between">
           <div class="w-full flex flex-col">
@@ -17,13 +18,17 @@
             </div>
           </div>
 
-          <button class="w-full p-2 box-border border border-primary bg-primary text-white transition duration-300 hover:bg-white hover:text-primary" @click="openQue(list.name)">{{ $t("product.ask") }}</button>
+          <button
+            class="w-full p-2 box-border border border-primary bg-primary text-white transition duration-300 hover:bg-white hover:text-primary"
+            @click="openQue(list.name)">{{ $t("product.ask") }}</button>
         </div>
       </div>
 
       <!-- tab -->
       <div class="w-full flex items-center border-b border-[#828282]">
-        <div :class="{ 'border-[#15619E]': item.id === defaultTab, 'cursor-pointer': item.id !== defaultTab }" class="px-6 py-2 border-b-4 border-transparent transition duration-500" v-for="item in tabList" :key="item.id" @click="defaultTab = item.id">
+        <div :class="{ 'border-[#15619E]': item.id === defaultTab, 'cursor-pointer': item.id !== defaultTab }"
+          class="px-6 py-2 border-b-4 border-transparent transition duration-500" v-for="item in tabList" :key="item.id"
+          @click="defaultTab = item.id">
           {{ item.label }}
         </div>
       </div>
@@ -33,7 +38,8 @@
       </div>
       <!-- tab2 content -->
       <div class="w-full pt-5" v-if="defaultTab === 2">
-        <img v-if="list.files[1]" class="mx-auto w-4/5" :src="`${imgUrl}/${list.files[1].filePath}`" :alt="list.files[1].fileName" />
+        <img v-if="list.files[1]" class="mx-auto w-4/5" :src="`${imgUrl}/${list.files[1].filePath}`"
+          :alt="list.files[1].fileName" />
       </div>
     </div>
 
@@ -41,95 +47,119 @@
     <div class="w-full mt-7 py-5 px-7 md:px-9">
       <VueSlickCarousel v-bind="settings">
         <div v-for="item in productList" :key="item.id">
-          <img :class="{ 'cursor-not-allowed': $route.params.id === item.id }" class="mx-auto p-1 bg-white cursor-pointer hover:bg-white/70" width="95%" :src="`${imgUrl}/${item.files[0].filePath}`" :alt="item.title" @click="goProduct(item)" />
+          <img :class="{ 'cursor-not-allowed': $route.params.id === item.id }"
+            class="mx-auto p-1 bg-white cursor-pointer hover:bg-white/70" width="95%"
+            :src="`${imgUrl}/${item.files[0].filePath}`" :alt="item.title" @click="goProduct(item)" />
         </div>
       </VueSlickCarousel>
     </div>
 
     <!-- modal -->
-    <Modal :openModal="openModal" :title="`${$t('product.ask')}...`" width="w-11/12 md:w-3/5 lg:w-2/5" @closeModal="openModal = false">
+    <Modal :openModal="openModal" :title="`${$t('product.ask')}...`" width="w-11/12 md:w-3/5 lg:w-2/5"
+      @closeModal="openModal = false">
       <ValidationObserver ref="form" class="w-full flex flex-col gap-3">
         <div class="w-full text-[#606266] flex flex-col gap-2">
           <!-- 詢問商品 -->
           <div class="w-full flex items-center gap-2">
-            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700">{{ $t("product.askProduct") }}</label>
+            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700">{{
+              $t("product.askProduct") }}</label>
             <div class="w-full form-group relative">
               <span class="text-lg font-bold">{{ temp.productName }}</span>
             </div>
           </div>
           <!-- 公司名稱 -->
           <div class="w-full flex items-center gap-2">
-            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700" for="companyName">{{ $t("field.companyName") }}</label>
+            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700"
+              for="companyName">{{ $t("field.companyName") }}</label>
             <div class="w-full form-group relative">
               <ValidationProvider :name="$t('field.companyName')" rules="required" v-slot="{ errors }" class="w-full">
                 <div class="w-full relative">
-                  <input id="companyName" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" v-model="temp.companyName" />
+                  <input id="companyName" type="text"
+                    class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none"
+                    :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" v-model="temp.companyName" />
                 </div>
               </ValidationProvider>
             </div>
           </div>
           <!-- 聯絡人 -->
           <div class="w-full flex items-center gap-2">
-            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700" for="name">{{ $t("field.name") }}</label>
+            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700"
+              for="name">{{ $t("field.name") }}</label>
             <div class="w-full form-group relative">
               <ValidationProvider :name="$t('field.name')" rules="required" v-slot="{ errors }" class="w-full">
                 <div class="w-full relative">
-                  <input id="name" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" v-model="temp.name" />
+                  <input id="name" type="text"
+                    class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none"
+                    :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" v-model="temp.name" />
                 </div>
               </ValidationProvider>
             </div>
           </div>
           <!-- 職稱 -->
           <div class="w-full flex items-center gap-2">
-            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700" for="jobTitle">{{ $t("field.jobTitle") }}</label>
+            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700"
+              for="jobTitle">{{ $t("field.jobTitle") }}</label>
             <div class="w-full form-group relative">
               <ValidationProvider :name="$t('field.jobTitle')" class="w-full">
                 <div class="w-full relative">
-                  <input id="jobTitle" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" v-model="temp.jobTitle" />
+                  <input id="jobTitle" type="text"
+                    class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none"
+                    v-model="temp.jobTitle" />
                 </div>
               </ValidationProvider>
             </div>
           </div>
           <!-- 電子信箱 -->
           <div class="w-full flex items-center gap-2">
-            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700" for="email">{{ $t("field.email") }}</label>
+            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700"
+              for="email">{{ $t("field.email") }}</label>
             <div class="w-full form-group relative">
               <ValidationProvider :name="$t('field.email')" rules="required|email" v-slot="{ errors }" class="w-full">
                 <div class="w-full relative">
-                  <input id="email" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" v-model="temp.email" />
+                  <input id="email" type="text"
+                    class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none"
+                    :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" v-model="temp.email" />
                 </div>
               </ValidationProvider>
             </div>
           </div>
           <!-- 聯絡電話 -->
           <div class="w-full flex items-center gap-2">
-            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700" for="phone">{{ $t("field.phone") }}</label>
+            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700"
+              for="phone">{{ $t("field.phone") }}</label>
             <div class="w-full form-group relative">
               <ValidationProvider :name="$t('field.phone')" class="w-full">
                 <div class="w-full relative">
-                  <input id="phone" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" v-model="temp.phone" />
+                  <input id="phone" type="text"
+                    class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none"
+                    v-model="temp.phone" />
                 </div>
               </ValidationProvider>
             </div>
           </div>
           <!-- 聯絡地址 -->
           <div class="w-full flex items-center gap-2">
-            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700" for="address">{{ $t("field.address") }}</label>
+            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700"
+              for="address">{{ $t("field.address") }}</label>
             <div class="w-full form-group relative">
               <ValidationProvider :name="$t('field.address')" rules="required" v-slot="{ errors }" class="w-full">
                 <div class="w-full relative">
-                  <input id="address" type="text" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" v-model="temp.address" />
+                  <input id="address" type="text"
+                    class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none"
+                    :class="{ '!border-[#EF4444] is-error': errors.length > 0 }" v-model="temp.address" />
                 </div>
               </ValidationProvider>
             </div>
           </div>
           <!-- 詢問內容 -->
           <div class="w-full flex items-center gap-2">
-            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700" for="contents">{{ $t("field.content") }}</label>
+            <label class="form-label min-w-[100px] max-w-[100px] lg:text-lg tracking-widest inline-block text-gray-700"
+              for="contents">{{ $t("field.content") }}</label>
             <div class="w-full form-group relative">
               <ValidationProvider :name="$t('field.content')" class="w-full">
                 <div class="w-full relative">
-                  <textarea id="contents" v-model="temp.contents" rows="7" class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" />
+                  <textarea id="contents" v-model="temp.contents" rows="7"
+                    class="form-control w-full py-2 px-3 bg-white border border-[#888888] transition ease-in-out focus:text-gray-700 focus:border-blue-600 focus:outline-none" />
                 </div>
               </ValidationProvider>
             </div>
@@ -137,7 +167,9 @@
         </div>
 
         <div class="w-full mt-5">
-          <button class="w-full flex items-center justify-center gap-2 bg-black border border-black text-white text-lg font-bold p-2 cursor-pointer duration-300 hover:bg-white hover:text-black disabled:opacity-80 disabled:cursor-not-allowed" :disabled="btnLoading" @click="submit()">
+          <button
+            class="w-full flex items-center justify-center gap-2 bg-black border border-black text-white text-lg font-bold p-2 cursor-pointer duration-300 hover:bg-white hover:text-black disabled:opacity-80 disabled:cursor-not-allowed"
+            :disabled="btnLoading" @click="submit()">
             <fa v-if="btnLoading" class="animate-spin" :icon="['fas', 'spinner']" />
             <span>{{ $t("field.submit") }}</span>
           </button>
@@ -164,6 +196,19 @@ export default {
   async asyncData({ app, $api, env, params, query }) {
     const imgUrl = env.VUE_APP_IMG_URL;
 
+    const getParams = {
+      LangCode: app.$cookies.get("lang") || "zh-tw",
+      id: params.id
+    }
+    const { data: getData } = await $api.product.get(getParams);
+    const { result: productInfo } = getData
+    let getProduct = productInfo[0]
+    try {
+      getProduct.files = JSON.parse(productInfo[0].files)
+    } catch (error) {
+      console.error(error);
+    }
+
     const listQuery = {
       CategoryId: query?.category,
       LangCode: app.$cookies.get("lang") || "zh-tw",
@@ -176,7 +221,7 @@ export default {
     const { data, count } = res.data;
 
     let productList = null;
-    let getProduct = null;
+    // let getProduct = null;
 
     if (data.length > 0) {
       data.map((i) => {
@@ -184,11 +229,11 @@ export default {
         return i;
       });
 
-      getProduct = data.filter((i) => i.id === params.id);
+      // getProduct = data.filter((i) => i.id === params.id);
       productList = data.filter((i) => i.id !== params.id);
     }
 
-    return { imgUrl, listQuery, list: getProduct[0], productList, total: count };
+    return { imgUrl, listQuery, list: getProduct, productList, total: count };
   },
   head() {
     return {
@@ -330,6 +375,7 @@ export default {
     const getTableClass = document.querySelector(".prodRule > table > tbody > tr > td:first-child");
 
     const getLang = this.$cookies.get("lang") || "zh-tw";
+    if (!getTableClass) return
     if (getLang === "en") {
       getTableClass.style.minWidth = "160px";
       getTableClass.style.maxWidth = "160px";

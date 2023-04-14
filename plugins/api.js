@@ -53,6 +53,13 @@ export default ({ $request }, inject) => {
           params
         })
       },
+      get(params) {
+        return $request({
+          url: "productss/getDetail",
+          method: "get",
+          params
+        })
+      },
       sendMail(data) {
         return $request({
           url: "productss/sendMail",

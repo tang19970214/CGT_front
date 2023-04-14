@@ -34,7 +34,7 @@
             <li v-for="item in menuList" :key="item.id" @click="goPath(item.value)">
               <span :class="{ 'text-primary font-bold': checkRoute(item.value) }">{{ item.label }}</span>
               <ul class="ml-4 text-base flex flex-col gap-1" v-if="item.value === '/product'">
-                <li :class="{ 'text-primary font-bold': checkProduct(item.dtValue) }" v-for="item in setLangName(productCategory)" :key="item.id" @click="goProductPath(item.dtValue)">{{ item.name }}</li>
+                <li :class="{ 'text-primary font-bold': checkProduct(item.dtValue) }" v-for="item in setLangName(productCategory)" :key="item.id" @click.stop="goProductPath(item.dtValue)">{{ item.name }}</li>
               </ul>
             </li>
             <li>
@@ -137,13 +137,17 @@ export default {
       this.$i18n.locale = val;
       window.location.reload();
     },
-    goPath(path) {
-      if (this.$route.path === path && path === "/product") return;
-      this.$router.push(path);
+    goPath(val) {
+      if (this.$route.path === val && val === "/product") return;
+        this.$router.push({
+          name: "product",
+          query: { id: val },
+        });
+      this.$router.push(val);
       this.openPhoneMenu = false;
     },
     goProductPath(val) {
-      if (val === "") {
+      if (!val) {
         this.$router.push({ name: "product" });
       } else {
         this.$router.push({
