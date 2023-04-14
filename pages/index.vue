@@ -24,7 +24,7 @@
           <div class="relative w-full mx-auto">
             <img width="100%" src="~/static/images/youtubeEx.jpg" alt="" />
             <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-              <div class="min-w-[56px] max-w-[56px] min-h-[56px] max-h-[56px] bg-[#2F80ED] rounded-full flex items-center justify-center cursor-pointer transition duration-300 hover:bg-opacity-80" @click="openVideoModal('https://www.youtube.com/embed/BLr5pxUuy6o', '【CGT 真空式脫泡攪拌機】特點介紹')">
+              <div class="min-w-[56px] max-w-[56px] min-h-[56px] max-h-[56px] bg-[#d33] rounded-full flex items-center justify-center cursor-pointer transition duration-300 hover:bg-opacity-80" @click="openVideoModal('https://www.youtube.com/embed/BLr5pxUuy6o', '【CGT 真空式脫泡攪拌機】特點介紹')">
                 <fa class="text-white text-2xl" :icon="['fas', 'play']" />
               </div>
             </div>
@@ -54,7 +54,7 @@
           <div class="relative w-full mx-auto">
             <img width="100%" src="~/static/images/youtubeEx1.jpg" alt="【真空式脫泡攪拌機】攪拌分散，除泡效果" />
             <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-              <div class="min-w-[56px] max-w-[56px] min-h-[56px] max-h-[56px] bg-[#2F80ED] rounded-full flex items-center justify-center cursor-pointer transition duration-300 hover:bg-opacity-80" @click="openVideoModal('https://www.youtube.com/embed/ghXq0TU-xA8', '【真空式脫泡攪拌機】攪拌分散，除泡效果')">
+              <div class="min-w-[56px] max-w-[56px] min-h-[56px] max-h-[56px] bg-[#d33] rounded-full flex items-center justify-center cursor-pointer transition duration-300 hover:bg-opacity-80" @click="openVideoModal('https://www.youtube.com/embed/ghXq0TU-xA8', '【真空式脫泡攪拌機】攪拌分散，除泡效果')">
                 <fa class="text-white text-2xl" :icon="['fas', 'play']" />
               </div>
             </div>
