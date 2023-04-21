@@ -3,7 +3,7 @@
     <div class="w-full grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-5">
       <div class="relative w-full flex flex-col justify-between bg-white shadow-md cursor-pointer" @mouseenter="openImgHover(item, true)" @mouseleave="openImgHover(item)" @click="goProductInfoPage(item)" v-for="item in list" :key="item.id" data-aos="fade-up" data-aos-duration="1000">
         <div class="w-full">
-          <img v-if="item.files[0]" :src="`${imgUrl}/${item.files[0].filePath}`" :alt="item.title" :title="item.title" width="100%" height="100%" class="w-full object-cover" />
+          <img :src="`${imgUrl}/${item.files.filePath}`" :alt="item.title" :title="item.title" width="100%" height="100%" class="w-full object-cover" />
           <transition name="fade">
             <div class="w-full h-full bg-white bg-opacity-70 absolute top-0 left-0 z-10 flex flex-col items-center justify-center text-center" v-if="item.openHover">
               <strong class="lg:text-xl text-gray-700" v-for="(txt, idx) in splitStr(item.name)" :key="idx">{{ txt }}</strong>

@@ -3,8 +3,8 @@
     <div class="w-full md:border border-[#d9d9d9] bg-white shadow-md p-4">
       <div class="w-full grid grid-cols-12 gap-5 pb-16">
         <div class="col-span-12 lg:col-span-5">
-          <img v-if="list.files[0]" width="100%" class="object-cover pointer-events-none"
-            :src="`${imgUrl}/${list.files[0].filePath}`" :alt="list.files[0].fileName" />
+          <img v-if="list.files" width="100%" class="object-cover pointer-events-none"
+            :src="`${imgUrl}/${list.files.filePath}`" :alt="list.files.fileName" />
         </div>
         <div class="col-span-12 lg:col-span-7 w-full flex flex-col justify-between">
           <div class="w-full flex flex-col">
@@ -14,7 +14,7 @@
             </div>
 
             <div class="w-full py-4">
-              <div class="prodRule" v-html="list.files[2]"></div>
+              <div class="prodRule" v-html="list.spec"></div>
             </div>
           </div>
 
@@ -38,8 +38,8 @@
       </div>
       <!-- tab2 content -->
       <div class="w-full pt-5" v-if="defaultTab === 2">
-        <img v-if="list.files[1]" class="mx-auto w-4/5" :src="`${imgUrl}/${list.files[1].filePath}`"
-          :alt="list.files[1].fileName" />
+        <img v-if="list.specFiles" class="mx-auto w-4/5" :src="`${imgUrl}/${list.specFiles.filePath}`"
+          :alt="list.specFiles.fileName" />
       </div>
     </div>
 
@@ -49,7 +49,7 @@
         <div v-for="item in productList" :key="item.id">
           <img :class="{ 'cursor-not-allowed': $route.params.id === item.id }"
             class="mx-auto p-1 bg-white cursor-pointer hover:bg-white/70" width="95%"
-            :src="`${imgUrl}/${item.files[0].filePath}`" :alt="item.title" @click="goProduct(item)" />
+            :src="`${imgUrl}/${item.files.filePath}`" :alt="item.name" @click="goProduct(item)" />
         </div>
       </VueSlickCarousel>
     </div>
@@ -205,6 +205,7 @@ export default {
     let getProduct = productInfo[0]
     try {
       getProduct.files = JSON.parse(productInfo[0].files)
+      getProduct.specFiles = JSON.parse(productInfo[0].specFiles)
     } catch (error) {
       console.error(error);
     }
@@ -221,7 +222,6 @@ export default {
     const { data, count } = res.data;
 
     let productList = null;
-    // let getProduct = null;
 
     if (data.length > 0) {
       data.map((i) => {
@@ -229,7 +229,6 @@ export default {
         return i;
       });
 
-      // getProduct = data.filter((i) => i.id === params.id);
       productList = data.filter((i) => i.id !== params.id);
     }
 
