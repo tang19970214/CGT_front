@@ -70,7 +70,7 @@
       </div>
       <div class="w-full max-w-[1080px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="w-full flex flex-col bg-white p-1 rounded-lg cursor-pointer" v-for="item in hotProductList" :key="item.id" @click="goProduct(item)">
-          <img width="100%" :src="`${imgUrl}/${item.files[0].filePath}`" :alt="item.files[0].fileName" />
+          <img v-if="Object.keys(item.files).length > 0" width="100%" :src="`${imgUrl}/${item.files.filePath}`" :alt="item.files.fileName" />
           <div class="w-full p-4 pb-2">
             <h3 class="text-sm md:text-base lg:text-lg" v-for="(txt, idx) in splitStr(item.name)" :key="idx">{{ txt }}</h3>
           </div>
