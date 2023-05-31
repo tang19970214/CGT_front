@@ -64,7 +64,7 @@ export default {
         const { code, data, count } = res.data;
         if (code === 200) {
           this.list = data.map((i) => {
-            i.files = JSON.parse(i.files);
+            i.files =  i.files ? JSON.parse(i.files) : '';
             i.openHover = false;
             return i;
           });

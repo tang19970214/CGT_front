@@ -11,7 +11,7 @@
         </ul>
       </div>
     </div>
-    <div class="w-full md:w-[calc(100%-220px)] m-auto p-3 md:p-0">
+    <div class="w-full md:w-[calc(100%-220px)] mx-auto p-3 md:p-0">
       <Nuxt-child :defaultMenu="defaultMenu" />
     </div>
   </section>
@@ -80,6 +80,9 @@ export default {
                 break;
               case "MJH":
                 i18nName = this.$t("product.menu.mjh");
+                break;
+              case "MJ":
+                i18nName = this.$t("product.menu.mj");
                 break;
               case "other":
                 i18nName = this.$t("product.menu.other");

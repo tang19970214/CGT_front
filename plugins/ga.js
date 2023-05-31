@@ -19,7 +19,7 @@ if (process.client && process.env.NODE_ENV === 'prod') {
     'https://www.google-analytics.com/analytics.js',
     'ga'
   )
-  ga('create', 'UA-226196812-1', 'auto')
+  ga('create', 'G-GV1RXM3EXR', 'auto')
 }
 
 export default ({ app: { router } }) => {

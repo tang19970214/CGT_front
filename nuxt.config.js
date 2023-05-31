@@ -18,8 +18,8 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'keywords', content: '鉅鴻, 鉅鴻科技, 鉅鴻科技有限公司, CGT, CGT TECHNOLOGY, 鉅鴻科技 CGT TECHNOLOGY' },
-      { hid: 'description', name: 'description', content: '' },
+      { name: 'keywords', content: '鉅鴻, 鉅鴻科技, CGT, CGT TECHNOLOGY, 離心脫泡機, 真空攪拌機' },
+      { hid: 'description', name: 'description', content: '主要服務項目有：真空式脫泡攪拌機、離心式脫泡攪拌機、真空式針筒離心機、填充機、攪拌杯' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
     noscript: [
@@ -34,7 +34,7 @@ export default {
           j.async = true;
           j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
           f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-MM5DR9F');`
+        })(window, document, 'script', 'dataLayer', 'G-GV1RXM3EXR');`
       }
     ],
     link: [
