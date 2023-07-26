@@ -95,11 +95,12 @@
 
     <!-- 6大特點 -->
     <div class="w-full mt-3 bg-white p-6 box-border">
-      <h1 v-if="$cookies.get('lang') === 'tw'" class="text-[#106BAA] text-2xl md:text-5xl font-bold">真空式脫泡攪拌機<span class="text-5xl md:text-8xl">6</span>大特點
+      <h1 v-if="$cookies.get('lang') === 'tw'" class="text-[#106BAA] text-2xl md:text-5xl font-bold">真空式脫泡攪拌機<span
+          class="text-5xl md:text-8xl">6</span>大特點
       </h1>
-      <h2 :class="[$cookies.get('lang') === 'tw' ? 'text-lg md:text-[22px]' : 'text-2xl md:text-4xl' ]" class="py-0.5 px-2 md:px-5 bg-[#75AEDF] text-white inline-block tracking-wider mt-1">Six
-        Characteristics of
-        Vacuum Defoaming Mixer</h2>
+      <h2 :class="[$cookies.get('lang') === 'tw' ? 'text-lg md:text-[22px]' : 'text-2xl md:text-4xl']"
+        class="py-0.5 px-2 md:px-5 bg-[#75AEDF] text-white inline-block tracking-wider mt-1">{{ $t('skill.six_title') }}
+      </h2>
 
       <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-8">
         <div v-for="item in featuresList" :key="item.id" class="flex flex-col gap-5 text-base md:text-lg lg:text-xl">

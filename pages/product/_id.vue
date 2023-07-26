@@ -207,6 +207,8 @@ export default {
       getProduct.files = JSON.parse(productInfo[0].files)
       getProduct.specFiles = JSON.parse(productInfo[0].specFiles)
     } catch (error) {
+      getProduct.files = ''
+      getProduct.specFiles = ''
       console.error(error);
     }
 
@@ -225,7 +227,12 @@ export default {
 
     if (data.length > 0) {
       data.map((i) => {
-        i.files = JSON.parse(i.files);
+        try {
+          i.files = JSON.parse(i.files);
+        } catch (error) {
+          i.files = ''
+          console.error(error);
+        }
         return i;
       });
 
