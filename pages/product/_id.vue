@@ -180,6 +180,8 @@
 </template>
 
 <script>
+import { isJson } from '../../utils';
+
 const formTemplate = {
   companyName: "",
   productName: "",
@@ -203,14 +205,8 @@ export default {
     const { data: getData } = await $api.product.get(getParams);
     const { result: productInfo } = getData
     let getProduct = productInfo[0]
-    try {
-      getProduct.files = JSON.parse(productInfo[0].files)
-      getProduct.specFiles = JSON.parse(productInfo[0].specFiles)
-    } catch (error) {
-      getProduct.files = ''
-      getProduct.specFiles = ''
-      console.error(error);
-    }
+    getProduct.files = isJson(getProduct.files) ? JSON.parse(productInfo[0].files) : ''
+    getProduct.specFiles = isJson(getProduct.specFiles) ? JSON.parse(productInfo[0].specFiles) : ''
 
     const listQuery = {
       CategoryId: query?.category,
