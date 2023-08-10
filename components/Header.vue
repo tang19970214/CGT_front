@@ -1,7 +1,9 @@
 <template>
-  <section class="sticky top-0 left-0 w-full h-16 md:h-20 lg:h-28 bg-white transition duration-300 z-20 shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
+  <section
+    class="sticky top-0 left-0 w-full h-16 md:h-20 lg:h-28 bg-white transition duration-300 z-20 shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
     <div class="w-full max-w-[1080px] h-full mx-auto px-3 md:px-8 box-border flex items-center justify-between">
-      <img class="w-44 md:w-48 lg:w-auto h-4/5 lg:h-3/5 object-contain" :class="{ 'cursor-pointer': !checkRoute('/') }" src="~/static/images/CGT_LOGO_header.png" alt="鉅鴻科技" @click="goPath('/')" />
+      <img class="w-44 md:w-48 lg:w-auto h-4/5 lg:h-3/5 object-contain" :class="{ 'cursor-pointer': !checkRoute('/') }"
+        src="~/static/images/CGT_LOGO_header.png" alt="鉅鴻科技" @click="goPath('/')" />
 
       <!-- menu -->
       <div @click="openPhoneMenu = !openPhoneMenu" class="md:hidden transition duration-200 z-40">
@@ -10,12 +12,19 @@
 
       <div class="hidden md:block ml-auto">
         <ul class="flex items-center gap-4">
-          <li class="text-lg lg:text-xl text-primary border-b-2 transition duration-300 hover:border-primary" :class="{ 'font-bold border-primary': checkRoute(item.value), 'cursor-pointer border-transparent': !checkRoute(item.value) }" v-for="item in menuList" :key="item.id" @click="goPath(item.value)">{{ item.label }}</li>
+          <li class="text-lg lg:text-xl text-primary border-b-2 transition duration-300 hover:border-primary"
+            :class="{ 'font-bold border-primary': checkRoute(item.value), 'cursor-pointer border-transparent': !checkRoute(item.value) }"
+            v-for="item in menuList" :key="item.id" @click="goPath(item.value)">{{ item.label }}</li>
           <li class="text-primary text-lg lg:text-xl">
             <div class="flex justify-center dropdown relative">
-              <fa class="cursor-pointer transition duration-300 hover:scale-110" :icon="['fas', 'globe']" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" />
-              <ul class="dropdown-menu min-w-max absolute bg-white text-base z-50 float-left py-1 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none" aria-labelledby="dropdownMenuButton1">
-                <li class="py-1 px-4 transition duration-300 hover:bg-primary hover:bg-opacity-10" :class="{ 'text-primary font-bold bg-primary bg-opacity-10': checkLocale(item.langCode), 'cursor-pointer': !checkLocale(item.langCode) }" v-for="(item, idx) in locales" :key="idx" @click="changeLang(item.langCode)">
+              <fa class="cursor-pointer transition duration-300 hover:scale-110" :icon="['fas', 'globe']"
+                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" />
+              <ul
+                class="dropdown-menu min-w-max absolute bg-white text-base z-50 float-left py-1 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none"
+                aria-labelledby="dropdownMenuButton1">
+                <li class="py-1 px-4 transition duration-300 hover:bg-primary hover:bg-opacity-10"
+                  :class="{ 'text-primary font-bold bg-primary bg-opacity-10': checkLocale(item.langCode), 'cursor-pointer': !checkLocale(item.langCode) }"
+                  v-for="(item, idx) in locales" :key="idx" @click="changeLang(item.langCode)">
                   <p class="dropdown-item text-sm whitespace-nowrap">{{ item.langName }}</p>
                 </li>
               </ul>
@@ -30,21 +39,27 @@
       <div v-if="openPhoneMenu" class="fixed z-[20] top-0 left-0 bg-white bg-opacity-95 w-screen h-screen">
         <div class="w-full h-full flex items-center justify-center">
           <ul class="text-xl tracking-wider text-gray-700 flex flex-col gap-3">
-            <li :class="{ 'text-primary font-bold': checkRoute('/') }" @click="goPath('/')">{{ $t("menu.index") || "首頁" }}</li>
+            <li :class="{ 'text-primary font-bold': checkRoute('/') }" @click="goPath('/')">{{ $t("menu.index") || "首頁" }}
+            </li>
             <li v-for="item in menuList" :key="item.id" @click="goPath(item.value)">
               <span :class="{ 'text-primary font-bold': checkRoute(item.value) }">{{ item.label }}</span>
               <ul class="ml-4 text-xl flex flex-col gap-1" v-if="item.value === '/product'">
-                <li :class="{ 'text-primary font-bold': checkProduct(item.dtValue) }" v-for="item in setLangName(productCategory)" :key="item.id" @click.stop="goProductPath(item.dtValue)">{{ item.name }}</li>
+                <li :class="{ 'text-primary font-bold': checkProduct(item.dtValue) }"
+                  v-for="item in setLangName(productCategory)" :key="item.id" @click.stop="goProductPath(item.dtValue)">{{
+                    item.name }}</li>
               </ul>
             </li>
             <li>
-              <a class="inline-block text-2xl" data-bs-toggle="collapse" href="#langCollapse" role="button" aria-expanded="false" aria-controls="langCollapse">
+              <a class="inline-block text-2xl" data-bs-toggle="collapse" href="#langCollapse" role="button"
+                aria-expanded="false" aria-controls="langCollapse">
                 <fa :icon="['fas', 'globe']" />
               </a>
 
               <!-- 語言 -->
               <ul class="collapse" id="langCollapse">
-                <li class="px-2 transition duration-300 hover:bg-primary hover:bg-opacity-10" :class="{ 'text-primary font-bold bg-primary bg-opacity-10': checkLocale(item.langCode), 'cursor-pointer': !checkLocale(item.langCode) }" v-for="(item, idx) in locales" :key="idx" @click="changeLang(item.langCode)">
+                <li class="px-2 transition duration-300 hover:bg-primary hover:bg-opacity-10"
+                  :class="{ 'text-primary font-bold bg-primary bg-opacity-10': checkLocale(item.langCode), 'cursor-pointer': !checkLocale(item.langCode) }"
+                  v-for="(item, idx) in locales" :key="idx" @click="changeLang(item.langCode)">
                   <p class="dropdown-item whitespace-nowrap">{{ item.langName }}</p>
                 </li>
               </ul>
@@ -114,11 +129,11 @@ export default {
             case "MJH":
               i18nName = this.$t("product.menu.mjh");
               break;
+            case "MJ":
+              i18nName = this.$t("product.menu.mj");
+              break;
             case "other":
               i18nName = this.$t("product.menu.other");
-              break;
-            default:
-              i18nName = this.$t("product.menu.all");
               break;
           }
           i.name = i18nName || i.name;
@@ -139,10 +154,10 @@ export default {
     },
     goPath(val) {
       if (this.$route.path === val && val === "/product") return;
-        this.$router.push({
-          name: "product",
-          query: { id: val },
-        });
+      this.$router.push({
+        name: "product",
+        query: { id: val },
+      });
       this.$router.push(val);
       this.openPhoneMenu = false;
     },
