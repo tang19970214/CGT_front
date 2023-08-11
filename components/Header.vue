@@ -38,12 +38,12 @@
     <transition name="fade">
       <div v-if="openPhoneMenu" class="fixed z-[20] top-0 left-0 bg-white bg-opacity-95 w-screen h-screen">
         <div class="w-full h-full flex items-center justify-center">
-          <ul class="text-xl tracking-wider text-gray-700 flex flex-col gap-3">
+          <ul class="text-xl tracking-wider text-gray-700 flex flex-col gap-5">
             <li :class="{ 'text-primary font-bold': checkRoute('/') }" @click="goPath('/')">{{ $t("menu.index") || "首頁" }}
             </li>
             <li v-for="item in menuList" :key="item.id" @click="goPath(item.value)">
               <span :class="{ 'text-primary font-bold': checkRoute(item.value) }">{{ item.label }}</span>
-              <ul class="ml-4 text-xl flex flex-col gap-1" v-if="item.value === '/product'">
+              <ul v-if="item.value === '/product'" class="ml-4 mt-2 text-xl flex flex-col gap-1">
                 <li :class="{ 'text-primary font-bold': checkProduct(item.dtValue) }"
                   v-for="item in setLangName(productCategory)" :key="item.id" @click.stop="goProductPath(item.dtValue)">{{
                     item.name }}</li>
