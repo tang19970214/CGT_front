@@ -8,7 +8,7 @@
       </div>
 
       <div class="w-full grid grid-cols-12 gap-4">
-        <img v-lazy="`${imgUrl}/${list.photo}`" :title="list.title" :alt="list.title" width="100%" class="object-cover col-span-12 md:col-span-4" />
+        <img :src="`${imgUrl}/${list.photo}`" :title="list.title" :alt="list.title" width="100%" class="object-cover col-span-12 md:col-span-4" />
 
         <div id="ck" class="w-full col-span-12 md:col-span-8" v-html="list.contents"></div>
       </div>
