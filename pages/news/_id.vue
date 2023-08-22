@@ -3,18 +3,18 @@
     <div class="w-full p-2 md:p-4 rounded-lg bg-white shadow-lg">
       <!-- head -->
       <div class="w-full p-2">
-        <strong class="text-xl lg:text-2xl">{{ list.title }}</strong>
-        <p class="text-gray-600 mt-1 text-lg">{{ list.summary }}</p>
+        <h1 class="text-xl lg:text-2xl">{{ list.title }}</h1>
+        <h2 class="text-gray-600 mt-1 text-lg">{{ list.summary }}</h2>
       </div>
 
       <div class="w-full grid grid-cols-12 gap-4">
-        <img width="100%" class="object-cover col-span-12 md:col-span-4" :src="`${imgUrl}/${list.photo}`" alt="" />
+        <img v-lazy="`${imgUrl}/${list.photo}`" :title="list.title" :alt="list.title" width="100%" class="object-cover col-span-12 md:col-span-4" />
 
         <div id="ck" class="w-full col-span-12 md:col-span-8" v-html="list.contents"></div>
       </div>
 
       <div class="w-full text-center mt-10 mb-3">
-        <button class="py-1 px-3 border border-primary text-primary rounded bg-white transition duration-300 hover:bg-primary hover:text-white" @click="$router.push({ name: 'news' })">{{ $t("field.goBack") }}</button>
+        <NuxtLink to="/news" class="py-1 px-3 border border-primary text-primary rounded bg-white transition duration-300 hover:bg-primary hover:text-white">{{ $t("field.goBack") }}</NuxtLink>
       </div>
     </div>
   </section>

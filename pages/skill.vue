@@ -3,7 +3,7 @@
     <!-- video -->
     <div class="w-full grid grid-cols-1 lg:grid-cols-3 gap-3">
       <div class="relative w-full mx-auto flex flex-col items-center gap-1">
-        <img width="100%" src="~/static/images/youtubeEx.jpg" alt="【CGT 真空式脫泡攪拌機】特點介紹" class="h-full" />
+        <img width="100%" v-lazy="require('~/static/images/youtubeEx.jpg')" title="【CGT 真空式脫泡攪拌機】特點介紹" alt="【CGT 真空式脫泡攪拌機】特點介紹" class="h-full" />
         <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
           <div
             class="min-w-[80px] max-w-[80px] min-h-[80px] max-h-[80px] -translate-y-3 bg-[#d33] rounded-full flex items-center justify-center cursor-pointer transition duration-300 hover:bg-opacity-80"
@@ -11,11 +11,11 @@
             <fa class="text-white text-5xl ml-1.5" :icon="['fas', 'play']" />
           </div>
         </div>
-        <label class="text-lg tracking-wider font-bold">{{ $t('skill.videoTitle1') }}</label>
+        <h3 class="text-xl tracking-wider font-bold">{{ $t('skill.videoTitle1') }}</h3>
       </div>
 
       <div class="relative w-full mx-auto flex flex-col items-center gap-1">
-        <img width="100%" src="~/static/images/youtubeEx1.jpg" alt="【真空式脫泡攪拌機】攪拌分散，除泡效果" class="h-full" />
+        <img width="100%" v-lazy="require('~/static/images/youtubeEx1.jpg')" title="【真空式脫泡攪拌機】攪拌分散，除泡效果" alt="【真空式脫泡攪拌機】攪拌分散，除泡效果" class="h-full" />
         <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
           <div
             class="min-w-[80px] max-w-[80px] min-h-[80px] max-h-[80px] -translate-y-3 bg-[#d33] rounded-full flex items-center justify-center cursor-pointer transition duration-300 hover:bg-opacity-80"
@@ -23,11 +23,11 @@
             <fa class="text-white text-5xl ml-1.5" :icon="['fas', 'play']" />
           </div>
         </div>
-        <label class="text-lg tracking-wider font-bold">{{ $t('skill.videoTitle2') }}</label>
+        <h3 class="text-xl tracking-wider font-bold">{{ $t('skill.videoTitle2') }}</h3>
       </div>
 
       <div class="relative w-full mx-auto flex flex-col items-center gap-1">
-        <img width="100%" src="~/static/images/youtubeEx2.jpg" alt="【真空式脫泡攪拌機】大容量材料攪拌" class="h-full" />
+        <img width="100%" v-lazy="require('~/static/images/youtubeEx2.jpg')" title="【真空式脫泡攪拌機】大容量材料攪拌" alt="【真空式脫泡攪拌機】大容量材料攪拌" class="h-full" />
         <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
           <div
             class="min-w-[80px] max-w-[80px] min-h-[80px] max-h-[80px] -translate-y-3 bg-[#d33] rounded-full flex items-center justify-center cursor-pointer transition duration-300 hover:bg-opacity-80"
@@ -35,7 +35,7 @@
             <fa class="text-white text-5xl ml-1.5" :icon="['fas', 'play']" />
           </div>
         </div>
-        <label class="text-lg tracking-wider font-bold">{{ $t('skill.videoTitle3') }}</label>
+        <h3 class="text-xl tracking-wider font-bold">{{ $t('skill.videoTitle3') }}</h3>
       </div>
     </div>
 
@@ -48,7 +48,7 @@
         <div :class="[effectList[i - 1].content.length > 1 ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' : 'grid-cols-2']"
           class="w-full grid gap-5">
           <div v-for="(item, idx) in effectList[i - 1].content" :key="idx" class="flex flex-col gap-5">
-            <img :src="item.imgUrl" :alt="effectList[i - 1].title">
+            <img v-lazy="item.imgUrl" :title="effectList[i - 1].title" :alt="effectList[i - 1].title">
 
             <div v-if="effectList[i - 1].content.length > 1" class="relative w-full flex items-center">
               <div v-if="idx > 0"
@@ -95,16 +95,16 @@
 
     <!-- 6大特點 -->
     <div class="w-full mt-3 bg-white p-6 box-border">
-      <h1 v-if="$cookies.get('lang') === 'tw'" class="text-[#106BAA] text-2xl md:text-5xl font-bold">真空式脫泡攪拌機<span
+      <h1 v-if="$cookies.get('lang') === 'zh-tw'" class="text-[#106BAA] text-2xl md:text-5xl font-bold">真空式脫泡攪拌機<span
           class="text-5xl md:text-8xl">6</span>大特點
       </h1>
-      <h2 :class="[$cookies.get('lang') === 'tw' ? 'text-lg md:text-[22px]' : 'text-2xl md:text-4xl']"
+      <h2 :class="[$cookies.get('lang') === 'zh-tw' ? 'text-lg md:text-[22px]' : 'text-2xl md:text-4xl']"
         class="py-0.5 px-2 md:px-5 bg-[#75AEDF] text-white inline-block tracking-wider mt-1">{{ $t('skill.six_title') }}
       </h2>
 
       <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-8">
-        <div v-for="item in featuresList" :key="item.id" class="flex flex-col gap-5 text-base md:text-lg lg:text-xl">
-          <img :src="item.imgUrl" :alt="item.title_tw">
+        <div v-for="(item, idx) in featuresList" :key="item.id" class="flex flex-col gap-5 text-base md:text-lg lg:text-xl">
+          <img v-lazy="item.imgUrl" :title="`特點${idx + 1}`" :alt="`特點${idx + 1}`">
           <p v-if="$cookies.get('lang') === 'zh-tw'">{{ item.title_tw }}</p>
           <p v-if="$cookies.get('lang') === 'en'" class="text-[#636363]">{{ item.title_en }}</p>
         </div>
@@ -118,7 +118,7 @@
 
       <div class="w-full grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 place-items-start gap-3 lg:gap-8 mt-8">
         <div v-for="(item, idx) in useList" :key="item.id" class="flex flex-col justify-center text-[#7AAFDF] font-bold">
-          <img :src="item.imgUrl" :alt="item.title" class="w-full mb-2">
+          <img v-lazy="item.imgUrl" :title="$t(`skill.application.useList[${idx}].title`)" :alt="$t(`skill.application.useList[${idx}].title`)" class="w-full mb-2">
           <p>{{ $t(`skill.application.useList[${idx}].title`) }}</p>
           <p class="text-sm">{{ $t(`skill.application.useList[${idx}].desc`) }}</p>
         </div>

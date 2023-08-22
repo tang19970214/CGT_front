@@ -2,12 +2,12 @@
   <section class="w-full">
     <div class="w-full flex flex-col gap-3 lg:gap-5">
       <div class="w-full grid grid-cols-12 rounded-lg bg-white border shadow-lg p-4 gap-4 box-border" v-for="item in list" :key="item.id">
-        <img width="100%" class="max-h-[300px] object-cover col-span-12 md:col-span-5" :src="`${imgUrl}/${item.photo}`" :alt="item.title" />
+        <img v-lazy="`${imgUrl}/${item.photo}`" :title="item.title" :alt="item.title" width="100%" class="max-h-[300px] object-cover col-span-12 md:col-span-5" />
 
         <div class="col-span-12 md:col-span-7 flex flex-col justify-between">
           <div class="w-full flex flex-col gap-2">
-            <h5 class="text-gray-700 text-lg md:text-xl lg:text-2xl font-bold">{{ item.title }}</h5>
-            <p class="newsContent text-gray-600 text-sm md:text-base">{{ item.summary }}</p>
+            <h1 class="text-gray-700 text-lg md:text-xl lg:text-2xl font-bold">{{ item.title }}</h1>
+            <h2 class="newsContent text-gray-600 text-sm md:text-base">{{ item.summary }}</h2>
           </div>
           <div class="w-full flex items-center justify-between mt-7 md:mt-0">
             <p class="text-gray-600 text-sm">{{ $t("field.postDate") }}：{{ $dayjs(item.postDate).format("YYYY-MM-DD") }}</p>

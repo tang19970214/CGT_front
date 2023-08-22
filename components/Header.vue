@@ -2,8 +2,8 @@
   <section
     class="sticky top-0 left-0 w-full h-16 md:h-20 lg:h-28 bg-white transition duration-300 z-20 shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
     <div class="w-full max-w-[1080px] h-full mx-auto px-3 md:px-8 box-border flex items-center justify-between">
-      <img class="w-44 md:w-48 lg:w-auto h-4/5 lg:h-3/5 object-contain" :class="{ 'cursor-pointer': !checkRoute('/') }"
-        src="~/static/images/CGT_LOGO_header.png" alt="鉅鴻科技" @click="goPath('/')" />
+      <img @click="goPath('/')" src="~/static/images/CGT_LOGO_header.png" title="鉅鴻科技" alt="鉅鴻科技"
+        :class="{ 'cursor-pointer': !checkRoute('/') }" class="w-44 md:w-48 lg:w-auto h-4/5 lg:h-3/5 object-contain" />
 
       <!-- menu -->
       <div @click="openPhoneMenu = !openPhoneMenu" class="md:hidden transition duration-200 z-40">
@@ -12,9 +12,10 @@
 
       <div class="hidden md:block ml-auto">
         <ul class="flex items-center gap-4">
-          <li class="text-lg lg:text-xl text-primary border-b-2 transition duration-300 hover:border-primary"
+          <NuxtLink @click.native="openPhoneMenu = false" v-for="item in menuList" :key="item.id" :to="item.value"
             :class="{ 'font-bold border-primary': checkRoute(item.value), 'cursor-pointer border-transparent': !checkRoute(item.value) }"
-            v-for="item in menuList" :key="item.id" @click="goPath(item.value)">{{ item.label }}</li>
+            class="text-lg lg:text-xl text-primary border-b-2 transition duration-300 hover:border-primary">{{ item.label
+            }}</NuxtLink>
           <li class="text-primary text-lg lg:text-xl">
             <div class="flex justify-center dropdown relative">
               <fa class="cursor-pointer transition duration-300 hover:scale-110" :icon="['fas', 'globe']"
@@ -39,16 +40,17 @@
       <div v-if="openPhoneMenu" class="fixed z-[20] top-0 left-0 bg-white bg-opacity-95 w-screen h-screen">
         <div class="w-full h-full flex items-center justify-center">
           <ul class="text-xl tracking-wider text-gray-700 flex flex-col gap-5">
-            <li :class="{ 'text-primary font-bold': checkRoute('/') }" @click="goPath('/')">{{ $t("menu.index") || "首頁" }}
-            </li>
-            <li v-for="item in menuList" :key="item.id" @click="goPath(item.value)">
+            <NuxtLink @click.native="openPhoneMenu = false" to="/" :class="{ 'text-primary font-bold': checkRoute('/') }">
+              {{ $t("menu.index") || "首頁" }}</NuxtLink>
+            <NuxtLink @click.native="openPhoneMenu = false" v-for="item in menuList" :key="item.id" :to="item.value">
               <span :class="{ 'text-primary font-bold': checkRoute(item.value) }">{{ item.label }}</span>
               <ul v-if="item.value === '/product'" class="ml-4 mt-2 text-xl flex flex-col gap-1">
-                <li :class="{ 'text-primary font-bold': checkProduct(item.dtValue) }"
-                  v-for="item in setLangName(productCategory)" :key="item.id" @click.stop="goProductPath(item.dtValue)">{{
-                    item.name }}</li>
+                <NuxtLink @click.native="openPhoneMenu = false"
+                  :to="!item.dtValue ? '/product' : { name: 'product', query: { id: item.dtValue } }"
+                  v-for="item in setLangName(productCategory)" :key="item.id"
+                  :class="{ 'text-primary font-bold': checkProduct(item.dtValue) }">{{ item.name }}</NuxtLink>
               </ul>
-            </li>
+            </NuxtLink>
             <li>
               <a class="inline-block text-2xl" data-bs-toggle="collapse" href="#langCollapse" role="button"
                 aria-expanded="false" aria-controls="langCollapse">

@@ -62,6 +62,7 @@ export default {
     { src: '~/plugins/tw-elements-path', ssr: false },
     { src: '~/plugins/vue-slick-carousel', ssr: false },
     { src: '~/plugins/days', ssr: false },
+    { src: '~/plugins/directive-lazyLoad.js', ssr: false }
   ],
 
   components: true,

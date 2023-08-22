@@ -2,7 +2,7 @@
   <section class="max-w-[1080px] px-3 md:px-6 pt-3 md:pt-6">
     <div class="w-full border border-[#d9d9d9] rounded bg-white p-5 shadow-md">
       <div class="pb-2 border-b border-[#d9d9d9]">
-        <strong class="text-lg tracking-widest">{{ $t("contact.pageTitle") }}</strong>
+        <h1 class="text-xl tracking-widest">{{ $t("contact.pageTitle") }}</h1>
       </div>
 
       <div class="w-full flex flex-col lg:flex-row gap-2 items-center md:items-start justify-between py-2 box-border">

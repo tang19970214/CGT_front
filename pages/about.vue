@@ -6,14 +6,14 @@
       <div class="w-auto flex flex-col md:flex-row items-center gap-5 px-4 md:px-0 mt-4 mb-8 lg:mb-12">
         <div class="flex flex-col items-center md:items-start text-center gap-0.5">
           <h1 class="text-xl lg:text-2xl font-bold text-[#2F80ED]">{{ $t("about.company") }}</h1>
-          <p class="text-sm md:text-base lg:text-lg text-[#808080]">{{ $t("about.desc") }}</p>
+          <h2 class="text-sm md:text-base lg:text-lg text-[#808080]">{{ $t("about.desc") }}</h2>
         </div>
       </div>
 
       <!-- 專業研發｜技術領先｜以客為尊｜品質保證 -->
       <div class="w-full flex flex-col gap-7">
         <div v-for="i in 3" class="w-full">
-          <strong class="text-lg lg:text-xl text-[#333333]">{{ $t(`about.block${i}.title`) }}</strong>
+          <h3 class="text-lg lg:text-xl text-[#333333]">{{ $t(`about.block${i}.title`) }}</h3>
 
           <div class="w-full flex flex-col gap-1 text-left mt-4 lg:text-lg tracking-wider">
             <p v-for="text in $t(`about.block${i}.content`)">{{ text }}</p>

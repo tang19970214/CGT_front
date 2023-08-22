@@ -2,12 +2,11 @@
   <section class="md:pt-0 pb-0 bg-[#F3FFFE]">
     <Banner :carouselArr="list" />
 
-    <div data-aos="fade-up" data-aos-duration="1500" class="w-full">
-      <img width="100%" class="md:w-11/12 max-w-[1080px] mx-auto" :src="require(`~/static/images/introduce_${getLang}.png`)" alt="運用範疇" />
-    </div>
+    <img v-lazy="require(`~/static/images/introduce_${getLang}.png`)" title="運用範疇" alt="運用範疇" width="100%" class="md:w-11/12 max-w-[1080px] mx-auto">
 
     <!-- video1 -->
-    <div data-aos="fade-up" data-aos-duration="1500" class="w-full p-4 md:p-10 box-border bg-[url('~/static/images/indexBg.png')] bg-cover bg-no-repeat">
+    <div data-aos="fade-up" data-aos-duration="1500"
+      class="w-full p-4 md:p-10 box-border bg-[url('~/static/images/indexBg.png')] bg-cover bg-no-repeat">
       <div class="w-full max-w-[1080px] mx-auto flex flex-col lg:flex-row items-center justify-center gap-5">
         <!-- introduce -->
         <div class="w-full flex flex-col gap-2 text-[#15619E]">
@@ -22,9 +21,11 @@
         <!-- video -->
         <div class="w-full">
           <div class="relative w-full mx-auto">
-            <img width="100%" src="~/static/images/youtubeEx.jpg" alt="" />
+            <img width="100%" v-lazy="require('~/static/images/youtubeEx.jpg')" title="真空式脫泡攪拌機" alt="真空式脫泡攪拌機" />
             <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-              <div class="min-w-[56px] max-w-[56px] min-h-[56px] max-h-[56px] bg-[#d33] rounded-full flex items-center justify-center cursor-pointer transition duration-300 hover:bg-opacity-80" @click="openVideoModal('https://www.youtube.com/embed/BLr5pxUuy6o', '【CGT 真空式脫泡攪拌機】特點介紹')">
+              <div
+                class="min-w-[56px] max-w-[56px] min-h-[56px] max-h-[56px] bg-[#d33] rounded-full flex items-center justify-center cursor-pointer transition duration-300 hover:bg-opacity-80"
+                @click="openVideoModal('https://www.youtube.com/embed/BLr5pxUuy6o', '【CGT 真空式脫泡攪拌機】特點介紹')">
                 <fa class="text-white text-2xl" :icon="['fas', 'play']" />
               </div>
             </div>
@@ -34,7 +35,8 @@
     </div>
 
     <!-- video2 -->
-    <div data-aos="fade-up" data-aos-duration="1000" class="w-full p-4 md:p-10 box-border bg-[url('~/static/images/indexBg1.png')] bg-cover bg-no-repeat">
+    <div data-aos="fade-up" data-aos-duration="1000"
+      class="w-full p-4 md:p-10 box-border bg-[url('~/static/images/indexBg1.png')] bg-cover bg-no-repeat">
       <div class="w-full max-w-[1080px] mx-auto flex flex-col lg:flex-row-reverse items-center justify-center gap-5">
         <!-- introduce -->
         <div class="w-full flex flex-col gap-1.5 text-white">
@@ -52,9 +54,12 @@
         <!-- video -->
         <div class="w-full">
           <div class="relative w-full mx-auto">
-            <img width="100%" src="~/static/images/youtubeEx1.jpg" alt="【真空式脫泡攪拌機】攪拌分散，除泡效果" />
+            <img width="100%" v-lazy="require('~/static/images/youtubeEx1.jpg')" title="【真空式脫泡攪拌機】攪拌分散，除泡效果"
+              alt="【真空式脫泡攪拌機】攪拌分散，除泡效果" />
             <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-              <div class="min-w-[56px] max-w-[56px] min-h-[56px] max-h-[56px] bg-[#d33] rounded-full flex items-center justify-center cursor-pointer transition duration-300 hover:bg-opacity-80" @click="openVideoModal('https://www.youtube.com/embed/ghXq0TU-xA8', '【真空式脫泡攪拌機】攪拌分散，除泡效果')">
+              <div
+                class="min-w-[56px] max-w-[56px] min-h-[56px] max-h-[56px] bg-[#d33] rounded-full flex items-center justify-center cursor-pointer transition duration-300 hover:bg-opacity-80"
+                @click="openVideoModal('https://www.youtube.com/embed/ghXq0TU-xA8', '【真空式脫泡攪拌機】攪拌分散，除泡效果')">
                 <fa class="text-white text-2xl" :icon="['fas', 'play']" />
               </div>
             </div>
@@ -64,24 +69,29 @@
     </div>
 
     <!-- hot product -->
-    <div data-aos="fade-up" data-aos-duration="1000" class="w-full p-4 md:p-10 box-border bg-[url('~/static/images/indexBg2.png')] bg-cover bg-no-repeat">
+    <div data-aos="fade-up" data-aos-duration="1000"
+      class="w-full p-4 md:p-10 box-border bg-[url('~/static/images/indexBg2.png')] bg-cover bg-no-repeat">
       <div class="w-full text-center mb-10">
-        <strong class="text-white text-2xl">{{ $t("index.ourProduct") }}</strong>
+        <h2 class="text-white text-2xl">{{ $t("index.ourProduct") }}</h2>
       </div>
       <div class="w-full max-w-[1080px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="w-full flex flex-col bg-white p-1 rounded-lg cursor-pointer" v-for="item in hotProductList" :key="item.id" @click="goProduct(item)">
-          <img v-if="Object.keys(item.files).length > 0" width="100%" :src="`${imgUrl}/${item.files.filePath}`" :alt="item.files.fileName" />
+        <div class="w-full flex flex-col bg-white p-1 rounded-lg cursor-pointer" v-for="item in hotProductList"
+          :key="item.id" @click="goProduct(item)">
+          <img v-lazy="`${imgUrl}/${item.files.filePath}`" :title="item.files.fileName" :alt="item.files.fileName" width="100%" />
           <div class="w-full p-4 pb-2">
-            <h3 class="text-sm md:text-base lg:text-lg" v-for="(txt, idx) in splitStr(item.name)" :key="idx">{{ txt }}</h3>
+            <h3 class="text-sm md:text-base lg:text-lg" v-for="(txt, idx) in splitStr(item.name)" :key="idx">{{ txt }}
+            </h3>
           </div>
         </div>
       </div>
     </div>
 
     <!-- modal -->
-    <Modal width="w-11/12 md:w-3/5 xl:w-2/3 max-w-[1080px]" :openModal="videoModalVisible" @closeModal="videoModalVisible = false">
+    <Modal width="w-11/12 md:w-3/5 xl:w-2/3 max-w-[1080px]" :openModal="videoModalVisible"
+      @closeModal="videoModalVisible = false">
       <div class="relative w-full h-0 pb-[50%]">
-        <iframe class="absolute top-0 left-0 w-full h-full" :src="videoUrl" :title="videoTitle" frameborder="0" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" :src="videoUrl" :title="videoTitle" frameborder="0"
+          allowfullscreen></iframe>
       </div>
     </Modal>
   </section>

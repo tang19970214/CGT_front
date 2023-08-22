@@ -1,19 +1,27 @@
 <template>
   <section class="w-full">
     <div class="w-full grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-5">
-      <div class="relative w-full flex flex-col justify-between bg-white shadow-md cursor-pointer" @mouseenter="openImgHover(item, true)" @mouseleave="openImgHover(item)" @click="goProductInfoPage(item)" v-for="item in list" :key="item.id" data-aos="fade-up" data-aos-duration="1000">
+      <NuxtLink
+        :to="{ name: 'product-id', params: { id: item.id }, query: { category: item.categoryId, model: item.productCode } }"
+        @mouseenter="openImgHover(item, true)" @mouseleave="openImgHover(item)" v-for="item in list" :key="item.id"
+        data-aos="fade-up" data-aos-duration="1000"
+        class="relative w-full flex flex-col justify-between bg-white shadow-md cursor-pointer">
         <div class="w-full">
-          <img :src="`${imgUrl}/${item.files.filePath}`" :alt="item.title" :title="item.title" width="100%" height="100%" class="w-full object-cover" />
+          <img v-lazy="`${imgUrl}/${item.files.filePath}`" :title="item.title" :alt="item.title" width="100%" height="100%"
+            class="w-full object-cover" />
           <transition name="fade">
-            <div class="w-full h-full bg-white bg-opacity-70 absolute top-0 left-0 z-10 flex flex-col items-center justify-center text-center" v-if="item.openHover">
-              <strong class="lg:text-xl text-gray-700" v-for="(txt, idx) in splitStr(item.name)" :key="idx">{{ txt }}</strong>
+            <div
+              class="w-full h-full bg-white bg-opacity-70 absolute top-0 left-0 z-10 flex flex-col items-center justify-center text-center"
+              v-if="item.openHover">
+              <strong class="lg:text-xl text-gray-700" v-for="(txt, idx) in splitStr(item.name)" :key="idx">{{ txt
+              }}</strong>
             </div>
           </transition>
         </div>
         <div class="w-full bg-white p-3">
-          <p v-for="(txt, $idx) in splitStr(item.name)" :key="$idx">{{ txt }}</p>
+          <h2 v-for="(txt, $idx) in splitStr(item.name)" :key="$idx" class="text-lg">{{ txt }}</h2>
         </div>
-      </div>
+      </NuxtLink>
     </div>
   </section>
 </template>
@@ -64,7 +72,7 @@ export default {
         const { code, data, count } = res.data;
         if (code === 200) {
           this.list = data.map((i) => {
-            i.files =  i.files ? JSON.parse(i.files) : '';
+            i.files = i.files ? JSON.parse(i.files) : '';
             i.openHover = false;
             return i;
           });
@@ -75,14 +83,7 @@ export default {
     openImgHover(item, bool = false) {
       const getItem = this.list.filter((i) => i.id === item.id);
       getItem[0].openHover = bool;
-    },
-    goProductInfoPage(item) {
-      this.$router.push({
-        name: "product-id",
-        params: { id: item.id },
-        query: { category: item.categoryId, model: item.productCode },
-      });
-    },
+    }
   },
   mounted() {
     this.getList();
